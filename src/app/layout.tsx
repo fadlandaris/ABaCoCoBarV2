@@ -3,7 +3,7 @@ import { Manrope, Italiana } from "next/font/google";
 import Navbar from "@/components/reusable/navbar";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Bounce, ToastContainer, Zoom } from "react-toastify";
+import {  ToastContainer } from "react-toastify";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -42,7 +42,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             pauseOnHover
             theme="colored" 
           />
-          <Navbar/>
           {children}
         </body>
       </html>

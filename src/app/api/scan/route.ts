@@ -97,7 +97,8 @@ export async function POST(req: Request) {
       predictions: rfJson?.predictions ?? [],
       warnings: [],
     });
-  } catch (e: any) {
-    return NextResponse.json({ error: e?.message ?? 'Unknown error' }, { status: 500 });
+  } catch (e: unknown) {
+    const error = e instanceof Error ? e.message : 'Unknown error';
+    return NextResponse.json({ error }, { status: 500 });
   }
 }

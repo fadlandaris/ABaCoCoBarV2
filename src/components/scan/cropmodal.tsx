@@ -1,21 +1,20 @@
 'use client';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import Cropper from 'react-easy-crop';
+import Cropper, { Area } from 'react-easy-crop';
 
 type Props = {
   file: File | null;
   open: boolean;
   onClose: () => void;
-  onCropped: (blob: Blob) => void; // kirim hasil crop ke parent
+  onCropped: (blob: Blob) => void;
 };
 
 export default function CropModal({ file, open, onClose, onCropped }: Props) {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [crop, setCrop] = useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState<any>(null);
-  const imgRef = useRef<HTMLImageElement | null>(null);
+  const [crop, setCrop] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState<number>(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
 
   useEffect(() => {
     if (!file) return;
@@ -24,21 +23,21 @@ export default function CropModal({ file, open, onClose, onCropped }: Props) {
     return () => URL.revokeObjectURL(url);
   }, [file]);
 
-  const onCropComplete = useCallback((_area: any, areaPixels: any) => {
-    setCroppedAreaPixels(areaPixels);
+  const onCropComplete = useCallback((_croppedArea: Area, croppedPixels: Area) => {
+    setCroppedAreaPixels(croppedPixels);
   }, []);
 
   const createCroppedImage = useCallback(async () => {
     if (!imageUrl || !croppedAreaPixels) return;
+
     const image = await createImage(imageUrl);
     const canvas = document.createElement('canvas');
-
-    // kita buat crop berbentuk lingkaran (mendekati cawan petri)
     canvas.width = croppedAreaPixels.width;
     canvas.height = croppedAreaPixels.height;
-    const ctx = canvas.getContext('2d')!;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-    // gambar hasil crop persegi dulu
+    // Gambar hasil crop persegi dulu
     ctx.drawImage(
       image,
       croppedAreaPixels.x,
@@ -51,13 +50,21 @@ export default function CropModal({ file, open, onClose, onCropped }: Props) {
       croppedAreaPixels.height
     );
 
-    // masking lingkaran
+    // Buat masking lingkaran
     const circleCanvas = document.createElement('canvas');
     circleCanvas.width = canvas.width;
     circleCanvas.height = canvas.height;
-    const cctx = circleCanvas.getContext('2d')!;
+    const cctx = circleCanvas.getContext('2d');
+    if (!cctx) return;
+
     cctx.beginPath();
-    cctx.arc(canvas.width/2, canvas.height/2, Math.min(canvas.width, canvas.height)/2, 0, Math.PI*2);
+    cctx.arc(
+      canvas.width / 2,
+      canvas.height / 2,
+      Math.min(canvas.width, canvas.height) / 2,
+      0,
+      Math.PI * 2
+    );
     cctx.closePath();
     cctx.fill();
     cctx.globalCompositeOperation = 'source-in';
@@ -66,7 +73,7 @@ export default function CropModal({ file, open, onClose, onCropped }: Props) {
     circleCanvas.toBlob((blob) => {
       if (blob) onCropped(blob);
       onClose();
-    }, 'image/png', 1);
+    }, 'image/png');
   }, [croppedAreaPixels, imageUrl, onClose, onCropped]);
 
   if (!open || !imageUrl) return null;
@@ -79,20 +86,38 @@ export default function CropModal({ file, open, onClose, onCropped }: Props) {
             image={imageUrl}
             crop={crop}
             zoom={zoom}
-            aspect={1}              // square crop → lalu kita mask jadi circle
+            aspect={1}
             onCropChange={setCrop}
             onZoomChange={setZoom}
-            cropShape="rect"        // mask circle dilakukan manual agar hasil PNG transparan
+            cropShape="rect"
             showGrid={false}
             onCropComplete={onCropComplete}
             objectFit="contain"
           />
         </div>
         <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-3">
-          <input type="range" min={1} max={3} step={0.01} value={zoom} onChange={e => setZoom(Number(e.target.value))} className="w-1/2" />
+          <input
+            type="range"
+            min={1}
+            max={3}
+            step={0.01}
+            value={zoom}
+            onChange={(e) => setZoom(Number(e.target.value))}
+            className="w-1/2"
+          />
           <div className="flex gap-2">
-            <button onClick={onClose} className="px-4 py-2 rounded bg-neutral-700 hover:bg-neutral-600">Cancel</button>
-            <button onClick={createCroppedImage} className="px-4 py-2 rounded bg-white text-black hover:bg-neutral-200">Use Crop</button>
+            <button
+              onClick={onClose}
+              className="px-4 py-2 rounded bg-neutral-700 hover:bg-neutral-600"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={createCroppedImage}
+              className="px-4 py-2 rounded bg-white text-black hover:bg-neutral-200"
+            >
+              Use Crop
+            </button>
           </div>
         </div>
       </div>

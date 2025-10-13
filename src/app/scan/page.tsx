@@ -5,6 +5,7 @@ import DropzoneCard from '@/components/scan/dropzonecard';
 import CropModal from '@/components/scan/cropmodal';
 import ResultPanel from '@/components/scan/resultpanel';
 import type { ScanResponse } from '@/lib/types';
+import Image from "next/image";
 
 export default function ScanPage() {
   const bg = 'https://images.unsplash.com/photo-1617155093758-158e4e5dcfe9?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0';
@@ -39,8 +40,9 @@ export default function ScanPage() {
       if (!res.ok) throw new Error(`Server error: ${res.status}`);
       const data = (await res.json()) as ScanResponse;
       setResult(data);
-    } catch (e: any) {
-      setError(e?.message ?? 'Failed to scan image');
+    } catch (e: unknown) {
+      const err = e instanceof Error ? e.message : 'Failed to scan image';
+      setError(err);
     } finally {
       setProcessing(false);
     }
@@ -66,10 +68,13 @@ export default function ScanPage() {
         {file && !result && (
           <div className="mt-4">
             <div className="text-sm opacity-80 mb-2">Preview (you can re-open crop if needed)</div>
-            <img
+            <Image
               src={URL.createObjectURL(croppedBlob ?? file)}
-              className="max-h-[40vh] rounded border border-white/10"
               alt="preview"
+              width={500}
+              height={500}
+              unoptimized
+              className="max-h-[40vh] rounded border border-white/10 object-contain"
             />
             <div className="flex gap-3 mt-4">
               <button onClick={() => setShowCrop(true)} className="px-4 py-2 rounded bg-neutral-700 hover:bg-neutral-600">

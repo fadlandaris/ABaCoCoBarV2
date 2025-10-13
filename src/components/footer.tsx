@@ -1,9 +1,9 @@
 'use client'
 
 import React from 'react'
-import { picAbout, socialMediaData } from '@/data/data'
+import { socialMediaData } from '@/data/data'
 import { Navlinks } from '@/data/data'
-import Btn from './reusable/btn'
+
 
 export default function Footer() {
   

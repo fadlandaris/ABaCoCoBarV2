@@ -45,12 +45,12 @@ export default function Flow() {
         </div>
         <div className='grid grid-cols-4 gap-x-6 h-[70%]'>
           {howItWorks.map((item, i) => {
-            const blurStyle = [
-              '',
-              '',
-              '',
-              '',
-            ]
+            // const blurStyle = [
+            //   '',
+            //   '',
+            //   '',
+            //   '',
+            // ]
             const delay = [
               0,
               0.3,

@@ -3,6 +3,7 @@
 import { jsPDF } from 'jspdf';
 import { ScanResponse } from '@/lib/types';
 import { downloadDataUrl } from '@/lib/dataUrl';
+import Image from "next/image";
 
 type Props = {
   result: ScanResponse | null;
@@ -41,7 +42,13 @@ export default function ResultPanel({ result, onReset }: Props) {
       <div className="text-sm opacity-90 mb-4">Total colonies: <span className="font-bold">{result.count}</span></div>
       <div className="w-full overflow-auto">
         {/* tampilkan annotated image */}
-        <img src={result.annotated_image} alt="Annotated result" className="max-h-[60vh] rounded-lg border border-white/10" />
+        <Image
+          src={result.annotated_image}
+          alt="Annotated result"
+          width={520}
+          height={520}
+          className="max-h-[60vh] rounded-lg border border-white/10 object-contain w-auto h-auto"
+        />
       </div>
       <div className="flex gap-3 mt-4">
         <button onClick={onDownloadPNG} className="px-4 py-2 rounded bg-white text-black hover:bg-neutral-200">Download PNG</button>
