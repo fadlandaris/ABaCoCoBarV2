@@ -73,7 +73,7 @@ export default function CropModal({ file, open, onClose, onCropped }: Props) {
     circleCanvas.toBlob((blob) => {
       if (blob) onCropped(blob);
       onClose();
-    }, 'image/png');
+    }, 'image/png', 0.9);
   }, [croppedAreaPixels, imageUrl, onClose, onCropped]);
 
   if (!open || !imageUrl) return null;

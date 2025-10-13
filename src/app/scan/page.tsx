@@ -36,9 +36,13 @@ export default function ScanPage() {
       // (opsional) kirim param
       form.append('params', JSON.stringify({ conf: 0.25, iou: 0.45 }));
 
-      const res = await fetch('/api/scan', { method: 'POST', body: form });
-      if (!res.ok) throw new Error(`Server error: ${res.status}`);
-      const data = (await res.json()) as ScanResponse;
+    const res = await fetch('/api/scan', { method: 'POST', body: form });
+    if (!res.ok) {
+      const text = await res.text(); // tampilkan pesan asli dari server (mis. env kurang, dll.)
+      throw new Error(`Server error: ${res.status} – ${text}`);
+    }
+    const data = (await res.json()) as ScanResponse;
+
       setResult(data);
     } catch (e: unknown) {
       const err = e instanceof Error ? e.message : 'Failed to scan image';

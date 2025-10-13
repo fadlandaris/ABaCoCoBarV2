@@ -1,24 +1,34 @@
+// app/api/scan/route.ts
 import { NextResponse } from 'next/server';
 
 export const runtime = 'nodejs';
+// cegah caching & masalah streaming body di prod
+export const dynamic = 'force-dynamic';
+// beri waktu cukup buat panggilan eksternal
+export const maxDuration = 30;
 
-const RF_API_KEY = process.env.ROBOFLOW_API_KEY!;
-const RF_MODEL_URL = process.env.ROBOFLOW_MODEL_URL!; 
-// contoh: https://detect.roboflow.com/bacteria-colony-yolo-ww4ba/2
+const RF_API_KEY = process.env.ROBOFLOW_API_KEY;   // <-- tanpa "!"
+const RF_MODEL_URL = process.env.ROBOFLOW_MODEL_URL;
 
 export async function POST(req: Request) {
   const t0 = Date.now();
 
+  // guard ENV di runtime, bukan saat module load
+  if (!RF_API_KEY || !RF_MODEL_URL) {
+    return NextResponse.json(
+      { error: 'Missing ROBOFLOW_API_KEY or ROBOFLOW_MODEL_URL. Check Vercel Production env & redeploy.' },
+      { status: 500 }
+    );
+  }
+
   try {
     const form = await req.formData();
 
-    // ambil file dari client (hasil crop atau asli)
     const file = form.get('file') as Blob | File | null;
     if (!file) {
       return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
     }
 
-    // ambil params opsional dari client (conf & iou)
     let conf = 0.25;
     let iou = 0.45;
     const paramsRaw = form.get('params')?.toString();
@@ -30,50 +40,36 @@ export async function POST(req: Request) {
       } catch {}
     }
 
-    // ---------- 1) panggil Roboflow untuk dapatkan JSON (prediksi) ----------
+    // 1) JSON
     const jsonForm = new FormData();
-    jsonForm.append('file', file, 'image.png');
+    jsonForm.append('file', file, 'image.jpg');
 
     const jsonUrl =
       `${RF_MODEL_URL}?api_key=${encodeURIComponent(RF_API_KEY)}` +
       `&confidence=${conf}` +
-      `&overlap=${iou}`; // overlap ~ IOU
+      `&overlap=${iou}`;
 
-    const rfJsonRes = await fetch(jsonUrl, {
-      method: 'POST',
-      body: jsonForm,
-    });
-
+    const rfJsonRes = await fetch(jsonUrl, { method: 'POST', body: jsonForm, cache: 'no-store' });
     if (!rfJsonRes.ok) {
       const text = await rfJsonRes.text();
       return NextResponse.json({ error: `Roboflow JSON error: ${text}` }, { status: 500 });
     }
-
     const rfJson = await rfJsonRes.json() as {
       predictions?: Array<{ x:number; y:number; width:number; height:number; class:string; confidence:number }>
-      image?: { width:number; height:number }
     };
-
     const count = rfJson?.predictions?.length ?? 0;
 
-    // ---------- 2) panggil Roboflow lagi untuk annotated image ----------
-    // format=image akan mengembalikan PNG bytes dengan bounding boxes
+    // 2) Annotated image
     const imgForm = new FormData();
-    imgForm.append('file', file, 'image.png');
+    imgForm.append('file', file, 'image.jpg');
 
     const imgUrl =
       `${RF_MODEL_URL}?api_key=${encodeURIComponent(RF_API_KEY)}` +
       `&confidence=${conf}` +
       `&overlap=${iou}` +
-      `&format=image` +     // <- penting, biar balik gambar
-      `&labels=on` +        // tampilkan label kelas
-      `&stroke=2`;          // ketebalan garis box
+      `&format=image&labels=on&stroke=2`;
 
-    const rfImgRes = await fetch(imgUrl, {
-      method: 'POST',
-      body: imgForm,
-    });
-
+    const rfImgRes = await fetch(imgUrl, { method: 'POST', body: imgForm, cache: 'no-store' });
     if (!rfImgRes.ok) {
       const text = await rfImgRes.text();
       return NextResponse.json({ error: `Roboflow image error: ${text}` }, { status: 500 });
@@ -88,12 +84,7 @@ export async function POST(req: Request) {
       count,
       annotated_image: dataUrl,
       processing_ms,
-      model_meta: {
-        model: 'Roboflow Hosted (Object Detection)',
-        conf,
-        iou,
-      },
-      // kalau kamu mau pakai koordinatnya nanti:
+      model_meta: { model: 'Roboflow Hosted (Object Detection)', conf, iou },
       predictions: rfJson?.predictions ?? [],
       warnings: [],
     });
