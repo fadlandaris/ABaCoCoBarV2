@@ -1,23 +1,22 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, ReactNode } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 type Props = {
   onFileAccepted: (file: File) => void;
+  className?: string;
+  children?: ReactNode; // <-- tambah: biar bisa custom isi
 };
 
-export default function DropzoneCard({ onFileAccepted }: Props) {
+export default function DropzoneCard({ onFileAccepted, className = '', children }: Props) {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (!acceptedFiles?.length) return;
-    const file = acceptedFiles[0];
-    onFileAccepted(file);
+    onFileAccepted(acceptedFiles[0]);
   }, [onFileAccepted]);
 
   const { getRootProps, getInputProps, isDragActive, fileRejections } = useDropzone({
-    accept: {
-      'image/*': ['.png', '.jpg', '.jpeg']
-    },
+    accept: { 'image/*': ['.png', '.jpg', '.jpeg'] },
     maxSize: 15 * 1024 * 1024, // 15MB
     multiple: false,
     onDrop
@@ -28,16 +27,26 @@ export default function DropzoneCard({ onFileAccepted }: Props) {
   return (
     <div
       {...getRootProps()}
-      className={`w-full h-72 border-2 border-dashed rounded-lg flex items-center justify-center cursor-pointer
-      ${isDragActive ? 'border-white' : 'border-neutral-300'}`}
+      className={`cursor-pointer ${className}`}
       aria-label="Upload zone"
     >
       <input {...getInputProps()} />
-      <div className="text-center select-none">
-        <div className="opacity-80">Drag & Drop or <span className="underline">Choose File</span> to upload</div>
-        <div className="text-xs text-neutral-300 mt-2">PNG / JPG / JPEG — max 15MB</div>
-        {errorText && <div className="text-red-300 text-xs mt-2">{errorText}</div>}
-      </div>
+      {/* jika user kasih children, pakai itu; kalau tidak, fallback default */}
+      {children ? (
+        children
+      ) : (
+        <div className={`w-full h-72 border-2 border-dashed rounded-lg flex items-center justify-center
+          ${isDragActive ? 'border-white' : 'border-neutral-300'}`}>
+          <div className="text-center select-none">
+            <div className="opacity-80">Drag & Drop or <span className="underline">Choose File</span> to upload</div>
+            <div className="text-xs text-neutral-300 mt-2">PNG / JPG / JPEG — max 15MB</div>
+            {errorText && <div className="text-red-300 text-xs mt-2">{errorText}</div>}
+          </div>
+        </div>
+      )}
+      {errorText && children && (
+        <div className="text-red-400 text-xs mt-2">{errorText}</div>
+      )}
     </div>
   );
 }

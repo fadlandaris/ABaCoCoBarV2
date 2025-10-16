@@ -4,6 +4,7 @@ import { jsPDF } from 'jspdf';
 import { ScanResponse } from '@/lib/types';
 import { downloadDataUrl } from '@/lib/dataUrl';
 import Image from "next/image";
+import { XCircleIcon } from '@phosphor-icons/react';
 
 type Props = {
   result: ScanResponse | null;
@@ -37,7 +38,7 @@ export default function ResultPanel({ result, onReset }: Props) {
   };
 
   return (
-    <div className="mt-6 p-4 rounded-lg bg-black/40">
+    <div className="mt-6 p-4 rounded-lg ">
       <div className="text-lg font-semibold mb-2">Result</div>
       <div className="text-sm opacity-90 mb-4">Total colonies: <span className="font-bold">{result.count}</span></div>
       <div className="w-full overflow-auto">
@@ -51,9 +52,48 @@ export default function ResultPanel({ result, onReset }: Props) {
         />
       </div>
       <div className="flex gap-3 mt-4">
-        <button onClick={onDownloadPNG} className="px-4 py-2 rounded bg-white text-black hover:bg-neutral-200">Download PNG</button>
-        <button onClick={onDownloadPDF} className="px-4 py-2 rounded bg-white text-black hover:bg-neutral-200">Download PDF</button>
-        <button onClick={onReset} className="px-4 py-2 rounded bg-neutral-700 hover:bg-neutral-600">Scan Another</button>
+      <button onClick={onReset} className={`bg-secondary text-primary flex items-center gap-x-2 rounded-full py-3 px-6 text-sm tracking-tighter overflow-hidden cursor-pointer group hover:scale-105 transition-all duration-500`}>
+        <div className='relative overflow-hidden'>
+          <p className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'>Scan Another</p>
+          <p className='opacity-0'>Scan Another</p>
+          <p className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'>Scan Another</p>
+        </div>
+        <div>
+          <div className='relative overflow-hidden -rotate-45'>
+            <XCircleIcon className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'/>
+            <XCircleIcon className='opacity-0'/>
+            <XCircleIcon className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'/>
+          </div>
+        </div>
+      </button>
+      <button onClick={onDownloadPDF} className={`bg-primary text-secondary flex items-center gap-x-2 rounded-full py-3 px-6 text-sm tracking-tighter overflow-hidden cursor-pointer group hover:scale-105 transition-all duration-500`}>
+        <div className='relative overflow-hidden'>
+          <p className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'>Download PDF</p>
+          <p className='opacity-0'>Download PDF</p>
+          <p className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'>Download PDF</p>
+        </div>
+        <div>
+          <div className='relative overflow-hidden -rotate-45'>
+            <XCircleIcon className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'/>
+            <XCircleIcon className='opacity-0'/>
+            <XCircleIcon className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'/>
+          </div>
+        </div>
+      </button>
+      <button onClick={onDownloadPNG} className={`bg-fourth text-secondary flex items-center gap-x-2 rounded-full py-3 px-6 text-sm tracking-tighter overflow-hidden cursor-pointer group hover:scale-105 transition-all duration-500`}>
+        <div className='relative overflow-hidden'>
+          <p className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'>Download PNG</p>
+          <p className='opacity-0'>Download PNG</p>
+          <p className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'>Download PNG</p>
+        </div>
+        <div>
+          <div className='relative overflow-hidden -rotate-45'>
+            <XCircleIcon className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'/>
+            <XCircleIcon className='opacity-0'/>
+            <XCircleIcon className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'/>
+          </div>
+        </div>
+      </button>
       </div>
     </div>
   );

@@ -3,8 +3,8 @@
 import React from 'react'
 import { Navlinks } from '@/data/data'
 import Navbtn from './navbtn'
-import { BugIcon } from '@phosphor-icons/react'
 import { motion } from "framer-motion";
+import Logo from "../../../public/assets/logo.svg";
 
 export default function Navbar({ goToSection }: { goToSection: (index: number) => void }) {
   return (
@@ -32,9 +32,7 @@ export default function Navbar({ goToSection }: { goToSection: (index: number) =
         </motion.div>
       </div>
 
-      <div>
-        <BugIcon weight='fill' size={20}/>
-      </div>
+      <Logo className="w-6 h-6 text-white fill-current" />
 
       <div className='flex items-center justify-end w-84'>
         <Navbtn/>

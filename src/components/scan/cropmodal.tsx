@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import Cropper, { Area } from 'react-easy-crop';
+import { ScissorsIcon, XCircleIcon } from '@phosphor-icons/react';
 
 type Props = {
   file: File | null;
@@ -80,7 +81,7 @@ export default function CropModal({ file, open, onClose, onCropped }: Props) {
 
   return (
     <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center">
-      <div className="bg-neutral-900 rounded-xl p-4 w-[90vw] h-[80vh] max-w-4xl relative">
+      <div className="bg-white rounded-2xl w-[100vw] h-[60vh] max-w-4xl relative overflow-hidden">
         <div className="absolute inset-0">
           <Cropper
             image={imageUrl}
@@ -95,7 +96,7 @@ export default function CropModal({ file, open, onClose, onCropped }: Props) {
             objectFit="contain"
           />
         </div>
-        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-3">
+        <div className="absolute bottom-6 left-8 right-8 flex items-center justify-between">
           <input
             type="range"
             min={1}
@@ -103,20 +104,36 @@ export default function CropModal({ file, open, onClose, onCropped }: Props) {
             step={0.01}
             value={zoom}
             onChange={(e) => setZoom(Number(e.target.value))}
-            className="w-1/2"
+            className="w-1/3 cursor-pointer"
           />
-          <div className="flex gap-2">
-            <button
-              onClick={onClose}
-              className="px-4 py-2 rounded bg-neutral-700 hover:bg-neutral-600"
-            >
-              Cancel
+          <div className="flex gap-2 items-center">
+            <button onClick={onClose} className={`bg-secondary text-primary flex items-center gap-x-2 rounded-full py-3 px-6 text-sm tracking-tighter overflow-hidden cursor-pointer group hover:scale-105 transition-all duration-500`}>
+              <div className='relative overflow-hidden'>
+                <p className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'>Cancel</p>
+                <p className='opacity-0'>Cancel</p>
+                <p className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'>Cancel</p>
+              </div>
+              <div>
+                <div className='relative overflow-hidden -rotate-45'>
+                  <XCircleIcon className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'/>
+                  <XCircleIcon className='opacity-0'/>
+                  <XCircleIcon className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'/>
+                </div>
+              </div>
             </button>
-            <button
-              onClick={createCroppedImage}
-              className="px-4 py-2 rounded bg-white text-black hover:bg-neutral-200"
-            >
-              Use Crop
+            <button onClick={createCroppedImage} className={`bg-primary text-secondary flex items-center gap-x-2 rounded-full py-3 px-6 text-sm tracking-tighter overflow-hidden cursor-pointer group hover:scale-105 transition-all duration-500`}>
+              <div className='relative overflow-hidden'>
+                <p className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'>Use Crop</p>
+                <p className='opacity-0'>Use Crop</p>
+                <p className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'>Use Crop</p>
+              </div>
+              <div>
+                <div className='relative overflow-hidden -rotate-45'>
+                  <ScissorsIcon className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'/>
+                  <ScissorsIcon className='opacity-0'/>
+                  <ScissorsIcon className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'/>
+                </div>
+              </div>
             </button>
           </div>
         </div>

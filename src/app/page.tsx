@@ -9,6 +9,7 @@ import Flow from "@/components/flow";
 import Contact from "@/components/contact";
 import Navbar from "@/components/reusable/navbar";
 
+
 const sections = [
   { id: 0, comp: <Hero /> },
   { id: 1, comp: <About /> },

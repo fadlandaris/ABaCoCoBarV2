@@ -6,12 +6,26 @@ import Marquee from 'react-fast-marquee'
 import { motion } from 'framer-motion'
 
 export default function Services() {
+  const personSmiling = 'https://images.unsplash.com/photo-1714273709972-f5b3606bf227?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170'
+  
   return (
     <section id='services' className='w-full h-full p-12 pb-24 pt-32'>
       <div className='w-full h-full flex flex-col justify-between'>
         <div className='flex justify-between items-center'>
-          <h1 className='text-6xl font-semibold text-secondary tracking-tighter'>Acces the growth capital you need, fast</h1>
-          <Btn value={'Learn More'} variant={true}/>
+          <motion.h1 className='text-6xl font-semibold text-secondary tracking-tighter'
+          initial={{ opacity: 0, y: 50, }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: 'easeOut', delay: 0.0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          >Acces the growth capital you need, fast</motion.h1>
+          <motion.div
+          initial={{ opacity: 0, y: 50, }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
+          >
+            <Btn value={'Learn More'} variant={true}/>
+          </motion.div>
         </div>
         <div className='grid grid-cols-4 gap-x-6 h-[70%]'>
           <motion.div className='rounded-2xl bg-primary p-12 tracking-tighter'
@@ -141,19 +155,21 @@ export default function Services() {
               </div>
             </motion.div>
           </motion.div>
-          <motion.div className='col-span-2 rounded-2xl flex flex-col justify-between bg-neutral-400 p-6 text-white'
+          <motion.div className='col-span-2 rounded-2xl flex flex-col justify-between bg-center bg-cover p-6 text-white relative overflow-hidden'
             initial={{ opacity: 0, scaleY: 0, transformOrigin: 'bottom' }}
             whileInView={{ opacity: 1, scaleY: 1 }}
             transition={{ duration: 1.5, ease: 'easeOut', delay: 0.0 }}   // baris 1
             viewport={{ once: true, amount: 0.3 }}
+            style={{ backgroundImage: `url(${personSmiling})` }}
            >
-            <motion.h1 className='text-4xl font-semibold tracking-tighter'
+            <div className='absolute inset-0 bg-black/30'/>
+            <motion.h1 className='text-4xl font-semibold tracking-tighter relative'
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}   // baris 1
               viewport={{ once: true, amount: 0.3 }}
             >Hassle- Free Cap</motion.h1>
-            <motion.p className='text-2xl tracking-tighter'
+            <motion.p className='text-2xl tracking-tighter relative'
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.9 }}   // baris 1

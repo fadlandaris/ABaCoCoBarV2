@@ -68,7 +68,7 @@ export default function About() {
             <motion.div className='rounded-2xl p-6 w-96 bg-tertiary flex flex-col justify-between'
               initial={{ opacity: 0, y: 50, height: 0 }}
               whileInView={{ opacity: 1, y: 0, height: '70%' }}
-              transition={{ duration: 1.5, ease: 'easeOut', delay: 0.0 }}   // baris 1
+              transition={{ duration: 1.5, ease: 'easeOut', delay: 0.0 }}  
               viewport={{ once: true, amount: 0.3 }}
             >
               <div className='text-2xl font-semibold tracking-tighter'>

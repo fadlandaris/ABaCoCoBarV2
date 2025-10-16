@@ -9,8 +9,18 @@ export default function Flow() {
     <section id='flow' className='w-full h-full p-12 pt-32 pb-24'>
       <div className='w-full h-full flex flex-col justify-between'>
         <div className='flex items-end justify-between'>
-          <h1 className='text-6xl font-semibold text-secondary tracking-tighter'>How it works?</h1>
-          <button className="relative px-6 py-3 text-black cursor-pointer group tracking-tighter">
+          <motion.h1 className='text-6xl font-semibold text-secondary tracking-tighter'
+          initial={{ opacity: 0, y: 50, }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: 'easeOut', delay: 0.0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          >How it works?</motion.h1>
+          <motion.button className="relative px-6 py-3 text-black cursor-pointer group tracking-tighter"
+          initial={{ opacity: 0, y: 50, }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
+          >
           <span className="relative z-10 text-primary">Simple as that</span>
 
           {/* Animated stroke blob */}
@@ -41,16 +51,10 @@ export default function Flow() {
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             />
           </motion.svg>
-        </button>
+        </motion.button>
         </div>
         <div className='grid grid-cols-4 gap-x-6 h-[70%]'>
           {howItWorks.map((item, i) => {
-            // const blurStyle = [
-            //   '',
-            //   '',
-            //   '',
-            //   '',
-            // ]
             const delay = [
               0,
               0.3,
@@ -61,21 +65,21 @@ export default function Flow() {
               <motion.div key={i} className='rounded-2xl relative flex flex-col justify-between p-6 bg-neutral-400 text-white bg-cover bg-center'
                 initial={{ opacity: 0, scaleY: 0, transformOrigin: 'bottom' }}
                 whileInView={{ opacity: 1, scaleY: 1 }}
-                transition={{ duration: 1.2, ease: 'easeOut', delay: delay[item.id] }}  
+                transition={{ duration: 0.8, ease: 'easeOut', delay: delay[item.id] }}  
                 viewport={{ once: true, amount: 0.3 }}
                 style={{ backgroundImage: `url(${item.link})` }}
               >
-                <div className='absolute bg-black/50 inset-0 rounded-2xl'/>
+                <div className='absolute bg-black/30 inset-0 rounded-2xl'/>
                 <motion.p className='text-2xl font-semibold tracking-tighter relative'
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: 'easeOut', delay: delay[item.id] * 2.5 }} 
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1, ease: 'easeOut', delay: delay[item.id] }} 
                   viewport={{ once: true, amount: 0.3 }}
                 >0{item.id + 1}</motion.p>
                 <motion.p className='text-2xl tracking-tighter relative font-medium'
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: 'easeOut', delay: delay[item.id] * 2.5 }}   // baris 1
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1, ease: 'easeOut', delay: delay[item.id] }}  
                   viewport={{ once: true, amount: 0.3 }}
                 >{item.desc}</motion.p>
               </motion.div>

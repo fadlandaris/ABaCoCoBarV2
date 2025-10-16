@@ -1,4 +1,5 @@
-import {  FacebookLogoIcon, InstagramLogoIcon, TwitterLogoIcon } from "@phosphor-icons/react"
+import {  FacebookLogoIcon, InstagramLogoIcon, TwitterLogoIcon, ImageIcon, ImageSquareIcon } from "@phosphor-icons/react"
+import { color } from "framer-motion"
 
 export const Navlinks = [
   {
@@ -81,7 +82,7 @@ export const contactData = [
   {
     id: 0,
     title: 'Contact-us for any Questions?',
-    link: 'https://images.unsplash.com/photo-1572579051341-3c5f2147163e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687',
+    link: 'https://images.unsplash.com/photo-1526045612212-70caf35c14df?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170',
     desc: 'ABaCoCoBar',
     icon: '',
     pic: '',
@@ -89,7 +90,7 @@ export const contactData = [
   },
   {
     id: 1,
-    title: 'Smart Gear for newborn Walks',
+    title: 'Smart Website for Bacteria Scanner',
     link: '',
     desc: '',
     icon: '',
@@ -99,8 +100,8 @@ export const contactData = [
   {
     id: 2,
     title: 'Review: Our YOLOv11 Model to Scan Colony',
-    link: 'https://images.unsplash.com/photo-1759215524749-02af214eb8e2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687',
-    desc: 'Train Model for Scanning',
+    link: 'https://images.unsplash.com/photo-1646861108770-d645014b8f48?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=735',
+    desc: 'Train Model for Scanner',
     icon: '',
     pic: '',
     name: 'YOLOv11',
@@ -135,6 +136,21 @@ export const socialMediaData = [
     id: 0,
     icon: TwitterLogoIcon,
     link: ''
+  },
+]
+
+export const imageScan = [
+  {
+    id: 0,
+    icon: ImageSquareIcon,
+  },
+  {
+    id: 1,
+    icon: ImageSquareIcon,
+  },
+  {
+    id: 2,
+    icon: ImageSquareIcon,
   },
 ]
 

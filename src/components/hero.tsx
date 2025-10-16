@@ -9,9 +9,13 @@ export default function Hero() {
     'https://images.unsplash.com/photo-1614308460927-5024ba2e1dcb?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170'
 
   return (
-    <section
+    <motion.section
       className="w-full h-full relative bg-cover bg-right p-12 overflow-hidden"
       style={{ backgroundImage: `url(${heroURL})` }}
+      initial={{ opacity: 0, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
+      viewport={{ once: true, amount: 0.3 }}
      >
       <div className="absolute inset-0 bg-black/60 z-20" />
       <div className="relative w-full h-full flex flex-col justify-end text-white z-30">
@@ -58,6 +62,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
