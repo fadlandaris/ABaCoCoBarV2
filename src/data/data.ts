@@ -1,5 +1,4 @@
-import {  FacebookLogoIcon, InstagramLogoIcon, TwitterLogoIcon, ImageIcon, ImageSquareIcon } from "@phosphor-icons/react"
-import { color } from "framer-motion"
+import {  FacebookLogoIcon, InstagramLogoIcon, TwitterLogoIcon, ImageSquareIcon } from "@phosphor-icons/react"
 
 export const Navlinks = [
   {
