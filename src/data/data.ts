@@ -1,156 +1,155 @@
-import {  FacebookLogoIcon, InstagramLogoIcon, TwitterLogoIcon, ImageSquareIcon } from "@phosphor-icons/react"
+import { ApertureIcon, HandHeartIcon, FlameIcon, FilePdfIcon, ThumbsUpIcon, RocketLaunchIcon } from "@phosphor-icons/react"
+import rocketImg from '../../public/assets/rocket.png'
+import heartImg from '../../public/assets/heart.png'
+import scannerImg from '../../public/assets/scanner.png'
+import flameImg from '../../public/assets/flame.png'
+import Hasslecard from "@/components/reusable/hasslecard"
+import IntuitiveCard from "@/components/reusable/intuitivecard"
+import PdfCard from "@/components/reusable/pdfcard"
 
-export const Navlinks = [
+export const navLinks = [
   {
     id: 0,
-    link: 'home',
-    nav: 'Home',
+    nav: 'guides',
   },
   {
     id: 1,
-    link: 'about',
-    nav: 'About',
+    nav: 'support'
+  },
+]
+
+export const heroData = [
+  {
+    id: 0,
+    name: 'Wam',
+    status: 'received',
+    desc: '1a...F6D9F',
+    price: '%1.200',
+  },
+  {
+    id: 1,
+    name: 'Wam',
+    status: 'received',
+    desc: '1a...F6D9F',
+    price: '%1.200',
   },
   {
     id: 2,
-    link: 'services',
-    nav: 'Services',
+    name: 'Wam',
+    status: 'received',
+    desc: '1a...F6D9F',
+    price: '%1.200',
   },
   {
     id: 3,
-    link: 'flow',
-    nav: 'Flow',
+    name: 'Wam',
+    status: 'received',
+    desc: '1a...F6D9F',
+    price: '%1.200',
   },
   {
     id: 4,
-    link: 'contact',
-    nav: 'Contact',
+    name: 'Wam',
+    status: 'received',
+    desc: '1a...F6D9F',
+    price: '%1.200',
   },
   {
     id: 5,
-    link: 'footer',
-    nav: 'Footer',
+    name: 'Wam',
+    status: 'received',
+    desc: '1a...F6D9F',
+    price: '%1.200',
   },
 ]
 
-export const picAbout = [
+export const aboutData = [
   {
     id: 0,
-    link: 'https://plus.unsplash.com/premium_photo-1689747698547-271d2d553cee?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    title: 'Experience Seamless Scanning Process',
+    desc: 'Upload your bacteria image and let our smart detection system automatically analyze.',
+    icon: ApertureIcon,
+    image: scannerImg,
+    color: '#7cbee0',
   },
   {
     id: 1,
-    link: 'https://plus.unsplash.com/premium_photo-1689708721750-8a0e6dc14cee?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    title: 'Fast Response Time ',
+    desc: 'Enjoy a quick scanning process — that are completed in an average of 7–10 seconds',
+    icon: RocketLaunchIcon,
+    image: rocketImg,
+    color: '#f4c773',
   },
   {
     id: 2,
-    link: "https://plus.unsplash.com/premium_photo-1689977807477-a579eda91fa2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    title: 'Fasten Your Process With ABaCoCoBar',
+    desc: 'Upload your bacteria image and let our smart detection system automatically analyze.',
+    icon: FlameIcon,
+    image: flameImg,
+    color: '#fed849',
   },
   {
     id: 3,
-    link: 'https://plus.unsplash.com/premium_photo-1689747698547-271d2d553cee?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    title: 'Scan Anywhere and Anytime Effortlesly',
+    desc: 'Free cost and easy flow, integrated with train model of YOLOv11',
+    icon: HandHeartIcon,
+    image: heartImg,
+    color: '#f24f3f',
   },
 ]
 
-
-export const howItWorks = [
+export const aboutPlusData = [
   {
     id: 0,
-    desc: 'Create an account to get started with ABaCoCoBar',
-    link: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170'
+    desc: 'Mint and Secure SRC - 20 Tokens',
+    image: [
+      {id: 0, url: ''},
+      {id: 1, url: ''},
+      {id: 2, url: ''},
+    ]
   },
   {
     id: 1,
-    desc: 'Prepare a clear image of your bacterial sample',
-    link: 'https://images.unsplash.com/photo-1579165466693-28649e0bf0bd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1138'
+    desc: 'Trade Collect, and Inscribe Ordinals',
+    image: [
+      {id: 0, url: ''},
+      {id: 1, url: ''},
+    ]
   },
   {
     id: 2,
-    desc: 'Scan the image directly using our advanced AI-based',
-    link: 'https://images.unsplash.com/photo-1682104941914-d3cddc5536c7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170'
-  },
-  {
-    id: 3,
-    desc: 'View the analysis results instantly with precise',
-    link: 'https://images.unsplash.com/photo-1649710025212-5b63cda94759?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170'
+    desc: 'Purchase STX 12 Tokens to power L2 apps on Stacks',
+    image: [
+      {id: 0, url: ''},
+      {id: 1, url: ''},
+      {id: 2, url: ''},
+    ]
   },
 ]
 
-
-export const contactData = [
+export const serviceData = [
   {
     id: 0,
-    title: 'Contact-us for any Questions?',
-    link: 'https://images.unsplash.com/photo-1526045612212-70caf35c14df?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170',
-    desc: 'ABaCoCoBar',
-    icon: '',
-    pic: '',
-    name: '',
+    title: 'We Provides PDF',
+    title2: ' Friendly Report',
+    desc: 'After completing the analysis, you can easily download a detailed report in PDF format',
+    icon: FilePdfIcon,
+    components: PdfCard,
   },
   {
     id: 1,
-    title: 'Smart Website for Bacteria Scanner',
-    link: '',
-    desc: '',
-    icon: '',
-    pic: '',
-    name: '',
+    title: 'Intuitive Performance ',
+    title2: '& Fast Process',
+    desc: 'After completing the analysis, you can easily download a detailed report in PDF format',
+    icon: RocketLaunchIcon,
+    components: IntuitiveCard,
   },
   {
     id: 2,
-    title: 'Review: Our YOLOv11 Model to Scan Colony',
-    link: 'https://images.unsplash.com/photo-1646861108770-d645014b8f48?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=735',
-    desc: 'Train Model for Scanner',
-    icon: '',
-    pic: '',
-    name: 'YOLOv11',
-  },
-  {
-    id: 3,
-    title: 'Join and Start Using ABaCoCoBar',
-    link: '',
-    desc: '100 + Users',
-    icon: '',
-    pic: [
-      {link: ''},
-      {link: ''},
-      {link: ''},
-    ],
-    name: 'Emily Rhodes',
-  }
-]
-
-export const socialMediaData = [
-  {
-    id: 0,
-    icon: FacebookLogoIcon,
-    link: ''
-  },
-  {
-    id: 0,
-    icon: InstagramLogoIcon,
-    link: ''
-  },
-  {
-    id: 0,
-    icon: TwitterLogoIcon,
-    link: ''
+    title: 'Hassle- Free Cap',
+    title2: '& esy to integrate',
+    desc: 'Experience a simple and effortless way to analyze and count bacterial colonies. Our automated system makes the process fast, accurate, and completely hassle-free',
+    icon: ThumbsUpIcon,
+    components: Hasslecard,
   },
 ]
-
-export const imageScan = [
-  {
-    id: 0,
-    icon: ImageSquareIcon,
-  },
-  {
-    id: 1,
-    icon: ImageSquareIcon,
-  },
-  {
-    id: 2,
-    icon: ImageSquareIcon,
-  },
-]
-
-

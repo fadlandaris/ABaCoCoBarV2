@@ -4,16 +4,8 @@ const nextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "plus.unsplash.com" },
       { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "img.clerk.com" }, // ✅ tambahkan domain Clerk
     ],
-  },
-
-  webpack(config: { module: { rules: { test: RegExp; use: string[]; }[]; }; }) {
-    // Tambahkan dukungan untuk import file SVG sebagai React component
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ["@svgr/webpack"],
-    });
-    return config;
   },
 };
 

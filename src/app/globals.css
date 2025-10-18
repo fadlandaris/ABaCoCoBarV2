@@ -1,24 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #d1df5a;
-  --color-secondary: #2f3501;
-  --color-tertiary: #d4e8eb;
-  --color-fourth: #dee5fb;
+  --color-primary: #ff3a0d;
+  --color-background: #fffbf7;
+  --color-foreground: #0f0f0f;
 }
 
-/* Utility khusus untuk Italiana (pakai hanya di elemen tertentu) */
+
 @utility font-primary {
-  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
 }
+
 @utility font-secondary {
-  font-family: var(--font-italiana), ui-serif, Georgia, serif;
+  font-family: var(--font-courier-prime), ui-mono, monospace;
 }
 
-
-/* opsional: warna globalmu */
 :root {
-  --background: #fbf9f5;
+  --background: #fffbf7;
   --foreground: #060606;
 }
 

@@ -1,200 +1,88 @@
 'use client'
 
 import React from 'react'
-import Marquee from 'react-fast-marquee'
 import Btn from './reusable/btn'
-import { ArrowRightIcon, AsteriskIcon } from '@phosphor-icons/react'
-import { picAbout } from '@/data/data'
+import { aboutData, aboutPlusData } from '@/data/data'
+import Image from 'next/image'
+import cloudBg from "../../public/assets/cloud.png"
 import { motion } from 'framer-motion'
 
 export default function About() {
   return (
-    <section id='about' className='w-full h-full p-12 pt-28 pb-24'>
-      <div className='w-full h-full flex flex-col justify-between'>
-        <div className=''>
-          <div className='flex justify-center items-center mb-10'>
-            <p className='font-semibold px-5 py-1 rounded-full bg-neutral-200 text-[#2d3400] tracking-tighter'>Join Over 100+ Users already using ABaCoCoBar</p>
-          </div>
-          <Marquee className='scrollbar-none' autoFill={true}>
-            <div className='flex items-center gap-x-5 mx-3 text-2xl font-light tracking-tighter text-neutral-200'>
-              <AsteriskIcon weight='regular'/>
-              <p>ABaCoCoBar</p>
+    <main className='w-full px-2'>
+      <motion.section className='bg-foreground text-white w-full rounded-3xl'>
+        <div className='border-r-6 border-l-6 border-neutral-300/5 max-w-7xl mx-auto py-32 px-6'>
+          <div className='flex items-center justify-between mb-24'>
+            <div className='text-5xl font-medium tracking-tighter'>
+              <h1>Your ultimate Bitcoin wallet,</h1>
+              <h1>packed with features to</h1>
+              <h1>simplify your crypto journey</h1>
             </div>
-          </Marquee>
-        </div>
-        <div className='grid grid-cols-3'>
-          <div>
-          <div className='text-6xl font-semibold text-secondary tracking-tighter'>
-            <motion.h1 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.0 }}   // baris 1
-              viewport={{ once: true, amount: 0.3 }}
-            >Build For Your Next 
-            </motion.h1>
-            <motion.h1 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}   // baris 1
-              viewport={{ once: true, amount: 0.3 }}
-            >Gen Of Scanner 
-            </motion.h1>
-          </div>
-          <motion.div className='flex items-center gap-x-4 my-10'
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}   // baris 1
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <Btn value={'Get Started'}/>
-            <Btn value={'Learn More'} variant={true}/>
-          </motion.div>
-          <div className='tracking-tighter'>
-            <motion.p className='text-neutral-400 font-medium'
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.9 }}   // baris 1
-              viewport={{ once: true, amount: 0.3 }}
-            ><span className='font-bold text-secondary'>Experience Seamless Scanning Process</span> Upload your bacteria colony image and let our smart detection system automatically analyze and count colonies with precision — all in seconds.</motion.p>
-            <motion.p className='text-neutral-400 font-medium mt-2'
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 1.2 }}   // baris 1
-              viewport={{ once: true, amount: 0.3 }}
-            ><span className='font-bold text-secondary'>Fast Response Time</span>  Enjoy a quick scanning process — the analysis and annotation are completed in an average of 7–10 seconds</motion.p>
-          </div>
-          </div>
-          <div className='col-span-2 flex justify-end gap-x-6 items-end'>
-            <motion.div className='rounded-2xl p-6 w-96 bg-tertiary flex flex-col justify-between'
-              initial={{ opacity: 0, y: 50, height: 0 }}
-              whileInView={{ opacity: 1, y: 0, height: '70%' }}
-              transition={{ duration: 1.5, ease: 'easeOut', delay: 0.0 }}  
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              <div className='text-2xl font-semibold tracking-tighter'>
-                <motion.p
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}   // baris 1
-                  viewport={{ once: true, amount: 0.3 }}
-                >Scan Anywhere and</motion.p>
-                <motion.p
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}   // baris 1
-                  viewport={{ once: true, amount: 0.3 }}
-                >Anytime Effortlesly</motion.p>
-              </div>
+            <div className='w-1/3'>
+              <p className='mb-6 text-[18px] text-neutral-400'>From advanced tools to seamless navigation, we’ve designed everything to elevate your Bitcoin experience.</p>
               <div>
-                <motion.div className='flex items-center gap-x-2 '
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: 'easeOut', delay: 0.9 }}   // baris 1
-                  viewport={{ once: true, amount: 0.3 }}
-                >
-                  <ArrowRightIcon size={14} weight='thin' className='text-neutral-400'/>
-                  <p className='text-sm text-secondary tracking-tighter'>Free cost and easy flow</p>
-                </motion.div>
-                <motion.div className='flex items-center gap-x-2 mb-6 mt-1'
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: 'easeOut', delay: 0.9 }}   // baris 1
-                  viewport={{ once: true, amount: 0.3 }}
-                >
-                  <ArrowRightIcon size={14} weight='thin' className='text-neutral-400'/>
-                  <p className='text-sm text-secondary tracking-tighter'>integrated with train model of YOLOv11</p>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: 'easeOut', delay: 0.9 }}   // baris 1
-                  viewport={{ once: true, amount: 0.3 }}
-                >
-                   <Btn value={'Manage expenses'}/>
-                </motion.div>
+                <Btn value={'Contact us'} variant={true}/>
               </div>
-            </motion.div>
-            <motion.div className=' w-80 rounded-2xl relative flex flex-col justify-end p-6 bg-black overflow-hidden'
-              initial={{ opacity: 0, y: 50, height: 0 }}
-              whileInView={{ opacity: 1, y: 0, height: '90%' }}
-              transition={{ duration: 1.5, ease: 'easeOut', delay: 0.0 }}   // baris 1
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 100 100"
-                width={250}
-                height={250}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="0.5"
-                className='absolute -top-12 -left-24 text-neutral-700'
-              >
-                <circle cx="50" cy="50" r="5" fill="currentColor" />
-                {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
-                  <ellipse
-                    key={angle}
-                    cx="50"
-                    cy="25"
-                    rx="8"
-                    ry="20"
-                    transform={`rotate(${angle} 50 50)`}
-                  />
-                ))}
-              </svg>
-              {/* <FlowerIcon size={200} weight='thin' /> */}
-              <motion.div className='bg-[#acb18c] absolute text-white top-12 p-3 rounded-2xl w-36'
-                initial={{ opacity: 0, x: 100, width: '100px' }}
-                whileInView={{ opacity: 1, x: 0, width: '144px' }}
-                transition={{ duration: 1.5, ease: 'easeOut', delay: 0.3 }}   // baris 1
-                viewport={{ once: true, amount: 0.3 }}
-              >
-                <p className='py-1 px-2 tracking-tighter text-[10px] rounded-full bg-white text-black font-semibold mb-2 inline-block'>Our Partners</p>
-                <div className='flex items-center'>
-                  {picAbout.map((item, i) => {
-                    return (
-                      <div key={i} className={`${item.id === 0 ? '' : '-ml-2'} w-8 h-8 rounded-full bg-cover bg-center`} style={{ backgroundImage: `url(${item.link})` }}/>
-                    )
-                  })}
-                </div>
-              </motion.div>
-              <motion.div className='border border-primary absolute text-white top-18 -right-4 p-3 rounded-2xl'
-                initial={{ opacity: 0, x: 50, width: '100px' }}
-                whileInView={{ opacity: 1, x: 0, width: '155px' }}
-                transition={{ duration: 1.5, ease: 'easeOut', delay: 0.6 }}   // baris 1
-                viewport={{ once: true, amount: 0.3 }}
-              >
-                <p className='py-1 px-2 tracking-tighter rounded-full bg-primary text-[10px] text-black font-semibold mb-2 inline-block'>Bacteria Scanner</p>
-                <div className='flex items-center'>
-                  {picAbout.map((item, i) => {
-                    return (
-                      <div key={i} className={`${item.id === 0 ? '' : '-ml-2'} w-8 h-8 rounded-full bg-cover bg-center`} style={{ backgroundImage: `url(${item.link})` }}/>
-                    )
-                  })}
-                </div>
-              </motion.div>
-              <div className='text-primary text-2xl font-medium tracking-tighter'>
-                <motion.p
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}   // baris 1
-                  viewport={{ once: true, amount: 0.15, margin: '-10% 0px' }}
-                >
-                  Fasten Your Process
-                </motion.p>
-                <motion.p
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}   // baris 1
-                  viewport={{ once: true, amount: 0.15, margin: '-10% 0px' }}
-                >
-                  With ABaCoCoBar
-                </motion.p>
+            </div>
+          </div>
+          <div className='border w-full border-6 border-neutral-300/5 rounded-[53px]'>
+            <div className='border w-full rounded-[50px] p-[5px] border-neutral-800'>
+              <div className='w-full grid grid-cols-2 gap-2'>
+                {aboutData.map((item, i) => {
+                  return (
+                    <div key={i} className='border rounded-[48px] border-neutral-800 overflow-hidden'>
+                      <div className='w-full h-[42vh] relative '>
+                        <div className='flex items-center justify-center gap-x-12 absolute top-1/2 -translate-1/2 left-1/2 -translate-x-1/2 z-0'>
+                          <div className={`w-40 h-15 rounded-full blur-3xl`} style={{ backgroundColor: item.color }}/>
+                          <div className={`w-40 h-15 rounded-full blur-3xl`} style={{ backgroundColor: item.color }}/>
+                        </div>
+                        <Image src={cloudBg} alt={''} fill className='object-cover object-contain z-10'/>
+                        <div className='absolute top-1/2 -translate-1/2 left-1/2 -translate-x-1/2 z-20'>
+                          <Image src={item.image} alt={''} width={230} className={`${item.id === 1 ? 'rotate-32' : 'rotate-0'}`}/>
+                        </div>
+                      </div>
+                      <div className='font-medium tracking-tighter p-9'>
+                        <item.icon size={30} weight='regular'/>
+                        <h1 className='mt-4 mb-3 text-2xl'>{item.title}</h1>
+                        <p className='text-[18px] text-neutral-400 w-[70%]'>{item.desc}</p>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
-            </motion.div>
+            </div>
+          </div>
+          <div className='mt-48'>
+            <div className='text-center text-5xl font-medium relative tracking-tighter'>
+              <div className='w-40 h-20 rounded-full bg-gradient-to-b from-[#7cbee0] via-[#fed849] to-[#f24f3f] absolute -bottom-8 left-1/2 -translate-x-1/2 z-0 blur-3xl'/>
+              <h1 className='relative'>Explore, create, and trade</h1>
+              <h1 className='relative'>Seemlessly <span className='text-neutral-400'>in the bitcoin</span></h1>
+              <h1 className='text-neutral-400 relative'>ecosystem.</h1>
+            </div>
+            <div className='mt-24 grid grid-cols-3'>
+              {aboutPlusData.map((item, i) => {
+                const rotate = [
+                  "rotate-2 z-0",
+                  "-rotate-2 z-10",
+                  "rotate-2 z-20",
+                ]
+                return (
+                  <div key={i} className={`${rotate[item.id]} border border-neutral-800 rounded-3xl p-8 bg-gradient-to-r from-neutral-900 to-foreground relative`}>
+                    <div className='flex items-center'>
+                      {item.image.map((items, i) => {
+                        return (
+                          <div key={i} className={`${rotate[items.id]} w-20 h-20 bg-neutral-900 border border-neutral-800 rounded-3xl`}/>
+                        )
+                      })}
+                    </div>
+                    <h1 className='text-xl w-[70%] font-medium mt-12'>{item.desc}</h1>
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </motion.section>
+    </main>
   )
 }

@@ -1,96 +1,43 @@
 'use client'
 
 import React from 'react'
-import { socialMediaData } from '@/data/data'
-import { Navlinks } from '@/data/data'
-
+import Btn from './reusable/btn'
+import { navLinks } from '@/data/data'
+import footerBg from "../../public/assets/footerbg.png"
+import cloudBg from "../../public/assets/cloud.png"
+import Image from 'next/image'
 
 export default function Footer() {
-  
   return (
-    <footer className='w-full h-full p-12 pt-28 bg-gradient-to-b from-[#fbf9f5] via-[#f2fab8]/50 to-[#d1df5a]/50'>
-      <div className=' w-full h-full flex flex-col justify-between'>
-        {/* card black  */}
-        <div className='w-full h-full rounded-2xl p-6 bg-black text-white grid grid-cols-2 gap-x-16 relative overflow-hidden'>
-           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 100 100"
-            width={300}
-            height={300}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.5"
-            className='absolute -bottom-24 left-24  text-neutral-700'
-          >
-            <circle cx="50" cy="50" r="5" fill="currentColor" />
-            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
-              <ellipse
-                key={angle}
-                cx="50"
-                cy="25"
-                rx="8"
-                ry="20"
-                transform={`rotate(${angle} 50 50)`}
-              />
-            ))}
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 100 100"
-            width={300}
-            height={300}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.5"
-            className='absolute -top-24 right-24  text-neutral-700'
-          >
-            <circle cx="50" cy="50" r="5" fill="currentColor" />
-            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
-              <ellipse
-                key={angle}
-                cx="50"
-                cy="25"
-                rx="8"
-                ry="20"
-                transform={`rotate(${angle} 50 50)`}
-              />
-            ))}
-          </svg>
-          <div className='flex flex-col justify-between relative'>
-            <div>
-              <h1>logo</h1>
-              <p className='text-sm tracking-tighter w-1/2 text-[#d1df5a] mt-6 mb-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo consequatur magni animi nostrum inventore est.</p>
-              <div className='flex items-center gap-x-2'>
-                <div className='w-1 h-2 bg-[#d1df5a] rounded-full'/>
-                <p className='text-sm tracking-tighter text-[#d1df5a] capitalize'>more about us</p>
-              </div>
+    <footer className='px-2 pb-2 w-full'>
+      <section className='bg-foreground text-white w-full rounded-3xl '>
+        <div className='border-r-6 border-l-6 border-neutral-300/5 max-w-7xl mx-auto pt-32 h-[100vh] flex flex-col justify-between'>
+          <div className='border'>
+            <div className='text-5xl font-medium tracking-tighter text-center'>
+              <h1>Your comprehensive gateway</h1>
+              <h1>to Bitcoin dapps and tools</h1>
             </div>
-            <div className='flex items-end justify-between'>
-              <div className='grid grid-cols-2 gap-2'>
-                {socialMediaData.map((item, i) => {
-                  return (
-                    <div key={i} className='p-2 rounded-full bg-white text-[#2f3501]'>
-                      <item.icon weight='fill'/>
-                    </div>
-                  )
-                })}
-              </div>
-              <p className='w-1/4 text-right text-sm tracking-tighter text-[#d1df5a]'>© 2025 - ABaCoCoBar Copyrights All Right Reserved</p>
+            <div className='flex items-center justify-center mt-12'>
+              <Btn value={'Scan now'}/>
             </div>
           </div>
-          <div className='flex flex-col justify-between relative'>
-            <div className='flex items-center gap-x-6'>
-              {Navlinks.map((item, i) => {
+          <div className='h-[200px] w-full grid grid-cols-3 relative'>
+            <Image src={footerBg} alt={''} fill className='object-cover object-contain'/>
+            <div className=' col-span-2 p-6 flex flex-col gap-y-3 border-t-3 border-neutral-300/5'>
+              {navLinks.map((item, i) => {
                 return (
-                  <button key={i} className='text-sm tracking-tighter text-[#d1df5a]'>
+                  <div key={i} className='capitalize'>
                     {item.nav}
-                  </button>
+                  </div>
                 )
               })}
             </div>
+            <div className='border p-6 border-t-3 border-neutral-300/5 border-l-3 relative bg-'>
+              test
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </footer>
   )
 }

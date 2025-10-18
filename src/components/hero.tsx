@@ -1,67 +1,91 @@
 'use client'
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { useRef } from "react";
+import Image from "next/image";
+import phoneCard from "../../public/assets/mobile.png"; 
+import { heroData } from "@/data/data";
+import heroBG from "../../public/assets/herobg.png"
+import Btn from "./reusable/btn";
 
-import React from 'react'
-import Btn from './reusable/btn'
-import { motion } from 'framer-motion'
-
-export default function Hero() {
-  const heroURL =
-    'https://images.unsplash.com/photo-1614308460927-5024ba2e1dcb?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170'
+export default function HeroSection() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
 
   return (
-    <motion.section
-      className="w-full h-full relative bg-cover bg-right p-12 overflow-hidden"
-      style={{ backgroundImage: `url(${heroURL})` }}
-      initial={{ opacity: 0, y: 0 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2, ease: 'easeOut' }}
-      viewport={{ once: true, amount: 0.3 }}
-     >
-      <div className="absolute inset-0 bg-black/60 z-20" />
-      <div className="relative w-full h-full flex flex-col justify-end text-white z-30">
-        <div className="flex justify-between">
-          <div>
-            <div className="text-6xl font-medium tracking-tighter">
-              <motion.h1
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: 'easeOut', delay: 0.0 }}
-                viewport={{ once: true, amount: 0.3 }}
-              >
-                Automated Bacterial
-              </motion.h1>
+    <section ref={ref} className="border-r-6 border-l-6 border-neutral-300/20 max-w-7xl mx-auto text-foreground relative overflow-hidden">
+      <div className="w-full h-[25vh] w-full relative">
+        <Image src={heroBG} className="inset-0 absolute" fill  alt={""} />
+      </div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
-                viewport={{ once: true, amount: 0.3 }}
-              >
-                Colony Counter
-              </motion.h1>
-            </div>
+      {/* Bagian teks */}
+      <motion.div
+      style={{
+        y: useSpring(useTransform(scrollYProgress, [0, 1], [0, 1200]), { stiffness: 100, damping: 20 }),
+        scale: useSpring(useTransform(scrollYProgress, [0, 1], [1, 0]), { stiffness: 100, damping: 20 }),
+        opacity: useSpring(useTransform(scrollYProgress, [0, 1], [1, 0]), { stiffness: 100, damping: 20 }), 
+      }}
+      className="text-7xl capitalize text-center font-medium tracking-tighter mb-10 z-0">
+        <h1>Automated Bacterial</h1>
+        <h1>Colony Counter</h1>
+        <h1>With Barcode</h1>
+      </motion.div>
 
-            <motion.p
-              className="w-[40%] my-6 tracking-tight text-neutral-200"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              Say goodbye to manual counting. Our AI-powered platform detects and counts bacterial colonies instantly — making research faster, smarter, and more efficient than ever
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: 'easeOut', delay: 0.9 }}
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              <Btn value="Get Started" />
+      {/* Phone card */}
+      <div className="w-full h-[695px] relative">
+        <div className="rounded-full bg-background absolute top-8 left-1/2 -translate-x-1/2 z-20 p-6 blur-2xl">
+          <motion.div className="bg-[#ff9a82] rounded-full w-[370px] h-[400px]"
+          style={{
+            height: useSpring(useTransform(scrollYProgress, [0, 1], [400, 600]), { stiffness: 100, damping: 20 }),
+            width: useSpring(useTransform(scrollYProgress, [0, 1], [370, 600]), { stiffness: 100, damping: 20 }),
+          }}
+          />
+        </div>
+        
+        <Image src={phoneCard} alt="phone" width={370} className="absolute left-1/2 -translate-x-1/2 border z-20"/>
+        {heroData.map((item, i) => {
+          const position = [
+            "left-1/2 -translate-x-1/2 top-[35%] -translate-y-1/2 rotate-2",
+            "left-1/2 -translate-x-1/2 top-[50%] -translate-y-1/2 -rotate-2",
+            "left-1/2 -translate-x-1/2 top-[70%] -translate-y-1/2 rotate-4",
+            "left-1/2 -translate-x-1/2 top-[32%] -translate-y-1/2 rotate-2",
+            "left-1/2 -translate-x-1/2 top-[55%] -translate-y-1/2 -rotate-6",
+            "left-1/2 -translate-x-1/2 top-[70%] -translate-y-1/2 ",
+          ]
+          const isLeft = i < 3;
+          const initialX = isLeft ? 500 : -500;
+          return (
+            <motion.div key={i} className={`${position[item.id]} w-[320px] h-[68px] absolute rounded-xl z-10 text-black flex items-center justify-between py-3 px-4 bg-[#e6d9c9] font-secondary `}
+            style={{ 
+              x: useSpring( useTransform(scrollYProgress, [0, 1], [0, initialX * -1]), { stiffness: 100, damping: 20 }),
+              opacity: useTransform(scrollYProgress, [0, 1], [0, 1]),
+            }}>
+              <div className="flex items-center gap-x-3">
+                <div className="w-8 h-8 rounded-full bg-neutral-400"/>
+                <div>
+                  <p className="capitalize text-foreground font-medium text-lg">{item.name}</p>
+                  <p className="capitalize text-neutral-400 font-light">{item.status}</p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="capitalize text-foreground font-medium text-lg">{item.price}</p>
+                <p className="capitalize text-neutral-400 font-light">{item.desc}</p>
+              </div>
             </motion.div>
-          </div>
+          )
+        })}
+      </div>
+      <div className="w-full relative bg-background pt-12 pb-24">
+        <div className="text-center text-neutral-500 text-[18px]">
+          <p>From transactions to dapps — explore every </p>
+          <p>corner of the Bitcoin universe with ease.</p>
+        </div>
+        <div className="flex items-center justify-center mt-3">
+          <Btn value={"Scan now"}/>
         </div>
       </div>
-    </motion.section>
-  )
+    </section>
+  );
 }
