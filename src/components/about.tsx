@@ -14,12 +14,12 @@ export default function About() {
         <div className='border-r-6 border-l-6 border-neutral-300/5 max-w-7xl mx-auto py-32 px-6'>
           <div className='flex items-center justify-between mb-24'>
             <div className='text-5xl font-medium tracking-tighter'>
-              <h1>Your ultimate Bitcoin wallet,</h1>
+              <h1>Your ultimate Bacteria Scanner</h1>
               <h1>packed with features to</h1>
-              <h1>simplify your crypto journey</h1>
+              <h1>simplify scanning process</h1>
             </div>
             <div className='w-1/3'>
-              <p className='mb-6 text-[18px] text-neutral-400'>From advanced tools to seamless navigation, we’ve designed everything to elevate your Bitcoin experience.</p>
+              <p className='mb-6 text-[18px] text-neutral-400'>Say goodbye to manual counting. Our platform detects and counts bacterial colonies instantly — making research faster, and more efficient than ever</p>
               <div>
                 <Btn value={'Contact us'} variant={true}/>
               </div>

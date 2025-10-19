@@ -13,7 +13,7 @@ export default function ScanLayout({ children }: { children: React.ReactNode }) 
   useEffect(() => {
     if (isLoaded && isSignedIn === false && !fired.current) {
       fired.current = true;
-      toast.error("Harus login terlebih dahulu!", {
+      toast.error("Sign in or create an account!", {
         toastId: "auth-required",
         style: {
           borderRadius: "12px",

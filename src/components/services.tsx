@@ -25,8 +25,8 @@ export default function Services() {
                 </div>
               </div>
             </div>
-            <div className="w-1/2 rounded-2xl overflow-hidden relative bg-foreground/95 border h-full">
-              <Image src={cloudBg} alt="" fill className="object-cover object-contain z-0"/>
+            <div className="w-1/2 rounded-2xl overflow-hidden relative bg-gradient-to-b from-neutral-900/90 to-foreground border h-full">
+              <Image src={cloudBg} alt="" fill className="object-cover object-contain z-10"/>
               <div className='absolute text-white top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2'>
                 <item.components/>
               </div>
