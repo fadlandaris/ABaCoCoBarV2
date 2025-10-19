@@ -1,16 +1,23 @@
 'use client'
 
-import React, { useMemo, useRef, useState, useEffect, createContext, useContext } from "react";
+import React, {
+  useMemo,
+  useRef,
+  useState,
+  useEffect,
+  createContext,
+  useContext,
+} from "react";
 import { guideData } from "@/data/data";
 import cloudBg from "../../public/assets/cloud.png";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
-// --- Tipe data untuk guide item (kamu bisa sesuaikan sesuai data di "@/data/data") ---
+// --- Tipe data untuk guide item ---
 interface GuideItem {
   id: number;
   title: string;
-  icon: any;
-  image: any;
+  icon: React.ElementType; // ✅ Komponen React (contohnya dari phosphor-icons)
+  image: StaticImageData;  // ✅ Gambar statis yang diimpor via next/image
   color: string;
   baseRotateZ?: number;
 }
@@ -100,7 +107,7 @@ function TiltCard({ item, size = "w-[370px] h-[300px]" }: { item: GuideItem; siz
           <div>
             <div className="text-white mb-3">
               {item.id === 4 ? (
-                <Image src={item.icon} alt="" width={70} />
+                <Image src={item.icon as unknown as StaticImageData} alt="" width={70} />
               ) : (
                 <item.icon size={25} weight="bold" />
               )}
