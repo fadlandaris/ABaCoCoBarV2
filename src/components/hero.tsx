@@ -1,5 +1,5 @@
 'use client'
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, MotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import phoneCard from "../../public/assets/mobile.png"; 
@@ -22,7 +22,7 @@ function FloatingCard({
 }: {
   item: HeroItem;
   i: number;
-  scrollYProgress: any;
+  scrollYProgress: MotionValue<number>;
 }) {
   const position = [
     "left-1/2 -translate-x-1/2 top-[35%] -translate-y-1/2 rotate-2",
