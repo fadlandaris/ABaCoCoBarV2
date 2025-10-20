@@ -45,7 +45,7 @@ scrollYProgress,
 
   return (
     <motion.div
-      className={`${position[item.id]} w-[320px] h-[69px] bg-cover bg-center absolute rounded-xl z-10 text-black flex items-center justify-between py-3 px-4 bg-[#e6d9c9] font-secondary`}
+      className={`${position[item.id]} w-[320px] h-[68px] bg-cover bg-center absolute rounded-xl z-10 text-black flex items-center justify-between py-3 px-4 bg-[#e6d9c9] font-secondary`}
       style={{ x, opacity, backgroundImage: `url(${item.link})` }} 
     >
       <div className="flex items-center gap-x-3">
