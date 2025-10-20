@@ -70,7 +70,7 @@ export default function ScanPage() {
         </div>
       </div>
       <div className='max-w-7xl mx-auto border-r-6 border-l-6 border-neutral-300/20 '>
-        <div className='text-center text-2xl font-semibold sm:text-5xl sm:font-medium relative tracking-tighter'>
+        <div className='text-center text-3xl font-semibold sm:text-5xl sm:font-medium relative tracking-tighter'>
           <h1 className='relative'>Explore, upload, and scan</h1>
           <h1 className='relative'>Seemlessly <span>in the ABaCoCoBar</span></h1>
           <h1 className='relative'>ecosystem</h1>

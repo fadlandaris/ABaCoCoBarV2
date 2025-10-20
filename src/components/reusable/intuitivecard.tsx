@@ -20,7 +20,7 @@ export default function IntuitiveCard() {
         </div>
          <button className='rounded-2xl h-[20%] bg-gradient-to-b from-foreground to-foreground/70 text-white shadow-[0px_5px_11px_-7px_#ffffff] border-t-2 border-neutral-300/30 flex items-center justify-center font-secondary font-normal cursor-pointer gap-x-2'>
           <RocketLaunchIcon size={16} className='' weight='fill'/>
-          Scan
+          Fast Process
         </button>
       </div>
     </div>

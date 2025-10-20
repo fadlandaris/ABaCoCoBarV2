@@ -19,7 +19,7 @@ const courierPrime = Courier_Prime({
 export const metadata = {
   title: "ABaCoCoBar • Bacteria Scanner",
   description: "Next.js + Tailwind + Figtree",
-}
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   

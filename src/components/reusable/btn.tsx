@@ -12,12 +12,19 @@ interface BtnProps {
   processing?: boolean
 }
 
-export default function Btn({ value, variant, onClick, disabled, }: BtnProps) {
+export default function Btn({ value, variant, onClick, disabled }: BtnProps) {
   const router = useRouter()
 
   const handleClick = () => {
     if (onClick) return onClick()
-    if (!variant) router.push('/scan')
+
+    if (variant) {
+      const phoneNumber = '6282144676507'
+      const message = encodeURIComponent('Halo, saya ingin bertanya terkait ABaCoCoBar')
+      window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank')
+    } else {
+      router.push('/scan')
+    }
   }
 
   return (

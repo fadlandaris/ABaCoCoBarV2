@@ -8,6 +8,7 @@ import heroBG from "../../public/assets/herobg.png";
 import Btn from "./reusable/btn";
 
 interface HeroItem {
+  link: any;
   id: number;
   name: string;
   status: string;
@@ -36,7 +37,6 @@ scrollYProgress,
   const isLeft = i < 3;
   const initialX = isLeft ? 500 : -500;
 
-  // ✅ Hook dipanggil di level atas (tidak di dalam map)
   const x = useSpring(
     useTransform(scrollYProgress, [0, 1], [0, initialX * -1]),
     { stiffness: 100, damping: 20 }
@@ -45,19 +45,18 @@ scrollYProgress,
 
   return (
     <motion.div
-      className={`${position[item.id]} w-[320px] h-[68px] absolute rounded-xl z-10 text-black flex items-center justify-between py-3 px-4 bg-[#e6d9c9] font-secondary`}
-      style={{ x, opacity }}
+      className={`${position[item.id]} w-[320px] h-[68px] bg-cover bg-center absolute rounded-xl z-10 text-black flex items-center justify-between py-3 px-4 bg-[#e6d9c9] font-secondary`}
+      style={{ x, opacity, backgroundImage: `url(${item.link})` }} 
     >
       <div className="flex items-center gap-x-3">
-        <div className="w-8 h-8 rounded-full bg-neutral-400" />
         <div>
-          <p className="capitalize text-foreground font-medium text-lg">{item.name}</p>
-          <p className="capitalize text-neutral-400 font-light">{item.status}</p>
+          <p className="capitalize text-white font-medium text-lg">{item.name}</p>
+          <p className="capitalize text-white font-light">{item.status}</p>
         </div>
       </div>
       <div className="text-right">
-        <p className="capitalize text-foreground font-medium text-lg">{item.price}</p>
-        <p className="capitalize text-neutral-400 font-light">{item.desc}</p>
+        <p className="capitalize text-white font-medium text-lg">{item.price}</p>
+        <p className="capitalize text-white font-light">{item.desc}</p>
       </div>
     </motion.div>
   );
