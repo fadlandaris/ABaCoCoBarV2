@@ -6,8 +6,10 @@ import CropModal from '@/components/scan/cropmodal';
 import ResultPanel from '@/components/scan/resultpanel';
 import type { ScanResponse } from '@/lib/types';
 import Image from 'next/image';
+import gridBG from "../../../public/assets/grid.png"
+import { motion } from 'framer-motion';
+import { PanoramaIcon } from '@phosphor-icons/react';
 import Btn from '@/components/reusable/btn';
-import { ScissorsIcon, ScanIcon, XCircleIcon, CircleNotchIcon } from '@phosphor-icons/react';
 
 export default function ScanPage() {
   const [file, setFile] = useState<File | null>(null);
@@ -58,55 +60,50 @@ export default function ScanPage() {
   };
 
   return (
-    <section className="h-[100vh] p-12 pt-24"
-    >
-      {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 p-6 px-12 flex justify-between items-center">
-        <Btn value={'Back to Website'} variant={true}/>
-        <Btn value={'Have Any Question'}/>
-      </nav>
-
-      <div className="w-full h-full flex flex-col justify-between relative">
-        {/* perbaikan: gunakan from-transparent, via-transparent agar valid */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fbf9f5]" />
-
-        {/* Title */}
-        <div className="flex items-center justify-center">
-          <p className="text-center py-2 px-4 rounded-full border inline-block text-sm border-neutral-300 tracking-tighter mb-3 font-medium text-secondary">
-            ABaCoCoBar
-          </p>
+    <section className=''>
+      <div className="max-w-7xl mx-auto h-[30vh] relative border-r-6 border-l-6 border-neutral-300/20 flex items-end justify-center pb-6">
+        <div className='w-100 sm:w-200 h-10 rounded-full bg-primary/40 absolute top-0 left-1/2 -translate-x-1/2 z-0 blur-2xl rotate-45'/>
+        <div className='w-50 sm:w-140 h-10 rounded-full bg-primary/40 absolute top-0 sm:-top-12 left-1/2 -translate-x-1/2 z-0 blur-2xl -rotate-45'/>
+        <Image src={gridBG} className="object-cover object-contain" fill  alt={""} />
+        <div className='z-30 flex items-center justify-center'>
+          <p className='p-2 px-3 rounded-full text-sm bg-[#f2efeb] text-[#4a4948]'>ABaCoCoBar</p>
         </div>
-        <h1 className="text-6xl font-semibold text-secondary tracking-tighter text-center mb-12">
-          Scan Your Bacteria Image Here
-        </h1>
-
-        {/* KOTAK UTAMA */}
-        <div
-          className="border-t-2 border-l-2 border-r-2 w-full h-full rounded-t-2xl border-dashed max-w-5xl mx-auto border-neutral-400 flex justify-center items-center
-                      hover:bg-gradient-to-b from-[#fbf9f5] via-[#f2fab8]/50 to-[#d1df5a]/50 transition-all duration-[600ms] cursor-pointer"
-        >
-          {/* STATE 1: BELUM ADA FILE & BELUM ADA HASIL → tampil Dropzone bergaya custom + ikon animasi */}
+      </div>
+      <div className='max-w-7xl mx-auto border-r-6 border-l-6 border-neutral-300/20 '>
+        <div className='text-center text-2xl font-semibold sm:text-5xl sm:font-medium relative tracking-tighter'>
+          <h1 className='relative'>Explore, upload, and scan</h1>
+          <h1 className='relative'>Seemlessly <span>in the ABaCoCoBar</span></h1>
+          <h1 className='relative'>ecosystem</h1>
+        </div>
+        <div className="min-h-[65vh] transition-all duration-600 border-t-2 border-l-2 border-r-2 rounded-3xl sm:rounded-t-[100px] border-dashed max-w-5xl sm:max-w-5xl mx-auto border-neutral-300 flex justify-center items-center bg-[#f2efeb] transition-all duration-600 cursor-pointer mt-12 group">
           {!file && !result && (
-            <DropzoneCard
-              onFileAccepted={onFileAccepted}
-              className="relative w-full h-full flex items-center justify-center"
-            >
-              <div className="relative">
-                {/* IKON ANIMASI */}
-                <div className="relative w-40 h-20 mx-auto mb-6">
-                  
+            <DropzoneCard onFileAccepted={onFileAccepted} className="relative w-full h-full flex items-center justify-center">
+              <div>
+                <div className="relative w-40 h-20 mx-auto">
+                  <motion.div
+                    className={`absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-10 text-foreground`}
+                    initial={{ y: 0 }}
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: 'loop',
+                      ease: 'easeInOut',
+                    }}
+                  >
+                    <PanoramaIcon size={60} weight="fill" />
+                  </motion.div>
                 </div>
 
                 {/* TEKS */}
-                <div className="tracking-tighter text-secondary text-center mb-1 font-medium flex items-center gap-x-1 justify-center">
+                <div className="tracking-tighter text-secondary text-center mb-1 font-medium flex items-center gap-x-1 justify-center text-neutral-500">
                   Drag & drop an Image, or
-                  <span className="relative inline-block group">
-                    <span>browse</span>
-                    {/* perbaikan: class tidak boleh 'group-hover:' kosong */}
-                    <span className="absolute left-0 -bottom-0.5 opacity-0 w-0 h-[1px] bg-primary group-hover:w-full group-hover:opacity-100 transition-all duration-[600ms]" />
+                  <span className="relative inline-block">
+                    <span className='text-primary'>browse</span>
+                    <span className="absolute left-0 -bottom-0.5 opacity-0 w-0 h-[2px] rounded-full bg-primary group-hover:w-full group-hover:opacity-100 transition-all duration-[600ms]" />
                   </span>
                 </div>
-                <p className="text-center text-secondary/30 tracking-tight">
+                <p className="text-center tracking-tight text-neutral-500 text-sm">
                   Maximum 15Mb each image — PNG / JPG / JPEG
                 </p>
               </div>
@@ -115,71 +112,25 @@ export default function ScanPage() {
 
           {/* STATE 2: SUDAH PILIH FILE, BELUM ADA HASIL → Preview + Actions */}
           {file && !result && (
-            <div className="w-full max-w-3xl mx-auto relative">
-              <div className="text-sm text-secondary/70 mb-2 text-center">
-                Preview (you can re-open crop if needed)
+            <div className="">
+              <div className="text-sm text-secondary/70 mb-2 text-center mb-6 text-neutral-500">
+                Preview ( you can re-open crop if needed )
               </div>
               <div className="flex justify-center">
                 <Image
                   src={URL.createObjectURL(croppedBlob ?? file)}
                   alt="preview"
-                  width={700}
-                  height={700}
+                  width={500}
+                  height={500}
                   unoptimized
                   className="max-h-[40vh] object-contain"
                 />
               </div>
               <div className="flex gap-3 mt-6 justify-center">
-                <button onClick={() => setShowCrop(true)} className={`bg-secondary text-primary flex items-center gap-x-2 rounded-full py-3 px-6 text-sm tracking-tighter overflow-hidden cursor-pointer group hover:scale-105 transition-all duration-500`}>
-                  <div className='relative overflow-hidden'>
-                    <p className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'>Re-Crop</p>
-                    <p className='opacity-0'>Re-Crop</p>
-                    <p className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'>Re-Crop</p>
-                  </div>
-                  <div>
-                    <div className='relative overflow-hidden -rotate-45'>
-                      <ScissorsIcon className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'/>
-                      <ScissorsIcon className='opacity-0'/>
-                      <ScissorsIcon className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'/>
-                    </div>
-                  </div>
-                </button>
-                <button onClick={onRunScan} disabled={processing} className={`bg-primary text-secondary flex items-center gap-x-2 rounded-full py-3 px-6 text-sm tracking-tighter overflow-hidden cursor-pointer group hover:scale-105 transition-all duration-500`}>
-                  <div className='relative overflow-hidden'>
-                    <p className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'> {processing ? 'Scanning..' : 'Run Scan'}</p>
-                    <p className='opacity-0'> {processing ? 'Scanning..' : 'Run Scan'}</p>
-                    <p className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'> {processing ? 'Scanning..' : 'Run Scan'}</p>
-                  </div>
-                  <div>
-                    <div className='relative overflow-hidden -rotate-45'>
-                      {processing ? <CircleNotchIcon className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all animate-spin' /> : <ScanIcon className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'/>}
-                      {processing ? <CircleNotchIcon className='opacity-0 ' /> : <ScanIcon className='opacity-0'/>}
-                      {processing ? <CircleNotchIcon className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300 animate-spin'/> : <ScanIcon className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'/>}
-                    </div>
-                  </div>
-                </button>
-                <button  onClick={resetAll} disabled={processing} className={`bg-fourth text-secondary flex items-center gap-x-2 rounded-full py-3 px-6 text-sm tracking-tighter overflow-hidden cursor-pointer group hover:scale-105 transition-all duration-500`}>
-                  <div className='relative overflow-hidden'>
-                    <p className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'>Reset</p>
-                    <p className='opacity-0'> Reset</p>
-                    <p className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'>Reset</p>
-                  </div>
-                  <div>
-                    <div className='relative overflow-hidden -rotate-45'>
-                      <XCircleIcon className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'/>
-                      <XCircleIcon className='opacity-0'/>
-                      <XCircleIcon className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'/>
-                    </div>
-                  </div>
-                </button>
+                <Btn value="Re-crop" variant={true} onClick={() => setShowCrop(true)} />
+                <Btn value={processing ? 'Scanning..' : 'Run Scan'} onClick={onRunScan} disabled={processing} processing={processing} />
+                <Btn value="Reset" variant={true} onClick={resetAll} disabled={processing} />
               </div>
-
-              {/* {processing && (
-                <div className="absolute inset-0 bg-black/50">
-                  <div className="h-4 w-4 rounded-full border-2 border-current border-t-transparent animate-spin" />
-                  <div>Preprocessing… YOLO inferencing… Post-processing…</div>
-                </div>
-              )} */}
 
               {error && (
                 <div className="mt-4 text-center text-red-500 text-sm">{error}</div>
@@ -194,15 +145,15 @@ export default function ScanPage() {
             </div>
           )}
         </div>
-      </div>
 
-      {/* Crop Modal */}
-      <CropModal
-        file={file}
-        open={showCrop}
-        onClose={() => setShowCrop(false)}
-        onCropped={(blob) => setCroppedBlob(blob)}
-      />
+        {/* Crop Modal */}
+        <CropModal
+          file={file}
+          open={showCrop}
+          onClose={() => setShowCrop(false)}
+          onCropped={(blob) => setCroppedBlob(blob)}
+        />
+      </div>
     </section>
   );
 }

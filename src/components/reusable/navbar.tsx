@@ -11,7 +11,7 @@ export default function Navbar() {
   const pathname = usePathname()
 
   return (
-    <nav className='w-[440px] h-[50px] rounded-full mx-auto fixed z-50 top-[24px] left-1/2 -translate-x-1/2 bg-foreground py-[10px] px-[20px] text-white flex items-center justify-between border border-neutral-800'>
+    <nav className='w-[280px] sm:w-[440px] h-[50px] rounded-full mx-auto fixed z-50 top-[24px] left-1/2 -translate-x-1/2 bg-foreground py-[10px] px-[20px] text-white flex items-center justify-between border border-neutral-800'>
       <button onClick={()=>router.push("/") } className='rounded-md bg-primary p-1 cursor-pointer'>
         <FediverseLogoIcon weight='fill' size={18}/>
       </button>

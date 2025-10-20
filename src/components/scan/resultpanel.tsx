@@ -5,6 +5,7 @@ import { ScanResponse } from '@/lib/types';
 import { downloadDataUrl } from '@/lib/dataUrl';
 import Image from "next/image";
 import { XCircleIcon } from '@phosphor-icons/react';
+import Btn from '../reusable/btn';
 
 type Props = {
   result: ScanResponse | null;
@@ -38,62 +39,23 @@ export default function ResultPanel({ result, onReset }: Props) {
   };
 
   return (
-    <div className="mt-6 p-4 rounded-lg ">
-      <div className="text-lg font-semibold mb-2">Result</div>
-      <div className="text-sm opacity-90 mb-4">Total colonies: <span className="font-bold">{result.count}</span></div>
-      <div className="w-full overflow-auto">
-        {/* tampilkan annotated image */}
-        <Image
-          src={result.annotated_image}
-          alt="Annotated result"
-          width={520}
-          height={520}
-          className="max-h-[60vh] rounded-lg border border-white/10 object-contain w-auto h-auto"
-        />
-      </div>
-      <div className="flex gap-3 mt-4">
-      <button onClick={onReset} className={`bg-secondary text-primary flex items-center gap-x-2 rounded-full py-3 px-6 text-sm tracking-tighter overflow-hidden cursor-pointer group hover:scale-105 transition-all duration-500`}>
-        <div className='relative overflow-hidden'>
-          <p className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'>Scan Another</p>
-          <p className='opacity-0'>Scan Another</p>
-          <p className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'>Scan Another</p>
+    <div className='flex items-center justify-center'>
+      <div>
+        <p className='text-center mb-6'>Total : <span className="font-bold">{result.count} colonies</span></p>
+        <div className="w-full overflow-auto">
+          <Image
+            src={result.annotated_image}
+            alt="Annotated result"
+            width={100}
+            height={100}
+            className="max-h-[40vh] object-contain w-auto h-auto rounded-full mx-auto"
+          />
         </div>
-        <div>
-          <div className='relative overflow-hidden -rotate-45'>
-            <XCircleIcon className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'/>
-            <XCircleIcon className='opacity-0'/>
-            <XCircleIcon className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'/>
-          </div>
+        <div className="flex gap-3 mt-6">
+          <Btn value={'Reset'} onClick={onReset} variant={true}/>
+          <Btn value={'PDF'} onClick={onDownloadPDF}/>
+          <Btn value={'PNG'} onClick={onDownloadPNG}/>
         </div>
-      </button>
-      <button onClick={onDownloadPDF} className={`bg-primary text-secondary flex items-center gap-x-2 rounded-full py-3 px-6 text-sm tracking-tighter overflow-hidden cursor-pointer group hover:scale-105 transition-all duration-500`}>
-        <div className='relative overflow-hidden'>
-          <p className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'>Download PDF</p>
-          <p className='opacity-0'>Download PDF</p>
-          <p className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'>Download PDF</p>
-        </div>
-        <div>
-          <div className='relative overflow-hidden -rotate-45'>
-            <XCircleIcon className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'/>
-            <XCircleIcon className='opacity-0'/>
-            <XCircleIcon className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'/>
-          </div>
-        </div>
-      </button>
-      <button onClick={onDownloadPNG} className={`bg-fourth text-secondary flex items-center gap-x-2 rounded-full py-3 px-6 text-sm tracking-tighter overflow-hidden cursor-pointer group hover:scale-105 transition-all duration-500`}>
-        <div className='relative overflow-hidden'>
-          <p className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'>Download PNG</p>
-          <p className='opacity-0'>Download PNG</p>
-          <p className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'>Download PNG</p>
-        </div>
-        <div>
-          <div className='relative overflow-hidden -rotate-45'>
-            <XCircleIcon className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'/>
-            <XCircleIcon className='opacity-0'/>
-            <XCircleIcon className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'/>
-          </div>
-        </div>
-      </button>
       </div>
     </div>
   );

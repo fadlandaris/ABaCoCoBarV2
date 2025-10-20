@@ -12,27 +12,25 @@ import { guideData } from "@/data/data";
 import cloudBg from "../../public/assets/cloud.png";
 import Image, { StaticImageData } from "next/image";
 
-// --- Tipe data untuk guide item ---
 interface GuideItem {
   id: number;
   title: string;
-  icon: React.ElementType; // ✅ Komponen React (contohnya dari phosphor-icons)
-  image: StaticImageData;  // ✅ Gambar statis yang diimpor via next/image
+  icon: React.ElementType;
+  image: StaticImageData;
   color: string;
   baseRotateZ?: number;
 }
 
-// --- Cursor context ---
 interface CursorState {
   x: number;
   y: number;
   ready: boolean;
 }
+
 const CursorContext = createContext<CursorState>({ x: 0, y: 0, ready: false });
 const useCursor = () => useContext(CursorContext);
 
-// --- 3D Tilt Card ---
-function TiltCard({ item, size = "w-[370px] h-[300px]" }: { item: GuideItem; size?: string }) {
+function TiltCard({ item }: { item: GuideItem }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const cursor = useCursor();
   const baseZ = item.baseRotateZ || 0;
@@ -74,7 +72,10 @@ function TiltCard({ item, size = "w-[370px] h-[300px]" }: { item: GuideItem; siz
       <div
         ref={ref}
         style={{ transform }}
-        className={`group ${size} rounded-xl cursor-pointer select-none [transform-style:preserve-3d] transition-[box-shadow,filter] duration-200 ease-out shadow-xl hover:shadow-2xl`}
+        className={`group w-[260px] sm:w-[300px] md:w-[320px] lg:w-[350px]
+        h-[240px] sm:h-[260px] md:h-[280px] lg:h-[300px]
+        rounded-xl cursor-pointer select-none [transform-style:preserve-3d]
+        transition-[box-shadow,filter] duration-200 ease-out shadow-xl hover:shadow-2xl`}
       >
         <div className="absolute inset-0 rounded-2xl" style={{ transform: "translateZ(0px)" }} />
         <div
@@ -86,37 +87,38 @@ function TiltCard({ item, size = "w-[370px] h-[300px]" }: { item: GuideItem; siz
           }}
           className="absolute inset-0 pointer-events-none"
         />
-        {/* content */}
+
+        {/* Card content */}
         <div
-          className="absolute inset-0 p-6 border border-neutral-700 bg-gradient-to-b from-neutral-900/90 to-foreground rounded-2xl overflow-hidden flex flex-col justify-between"
+          className="absolute inset-0 p-4 sm:p-5 md:p-6 border border-neutral-700 bg-gradient-to-b from-neutral-900/90 to-foreground rounded-2xl overflow-hidden flex flex-col justify-between"
           style={{ transform: "translateZ(70px)" }}
         >
-          <Image src={cloudBg} alt="" fill className="object-cover object-contain" />
+          <Image src={cloudBg} alt="" fill className="object-cover opacity-30" />
           <div className="w-full h-full relative">
             <div className="flex items-center justify-center gap-x-10 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-0">
-              <div className="w-20 h-10 rounded-full blur-2xl" style={{ backgroundColor: item.color }} />
-              <div className="w-20 h-10 rounded-full blur-2xl" style={{ backgroundColor: item.color }} />
+              <div className="w-12 sm:w-16 md:w-20 h-6 sm:h-8 md:h-10 rounded-full blur-2xl" style={{ backgroundColor: item.color }} />
+              <div className="w-12 sm:w-16 md:w-20 h-6 sm:h-8 md:h-10 rounded-full blur-2xl" style={{ backgroundColor: item.color }} />
             </div>
             <Image
               src={item.image}
-              width={item.id === 4 ? 200 : 140}
+              width={item.id === 4 ? 140 : 110}
               className={`${item.id === 3 ? "scale-x-[-1]" : ""} absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-10`}
               alt=""
             />
           </div>
           <div>
-            <div className="text-white mb-3">
+            <div className="text-white mb-2 sm:mb-3">
               {item.id === 4 ? (
-                <Image src={item.icon as unknown as StaticImageData} alt="" width={70} />
+                <Image src={item.icon as unknown as StaticImageData} alt="" width={50} />
               ) : (
-                <item.icon size={25} weight="bold" />
+                <item.icon size={22} weight="bold" />
               )}
             </div>
-            <p className="text-white text-xl tracking-tighter font-medium">{item.title}</p>
+            <p className="text-white text-lg sm:text-xl tracking-tighter font-medium">{item.title}</p>
           </div>
         </div>
       </div>
-      <p className="mt-4 text-center text-sm text-neutral-400 font-secondary font-medium">
+      <p className="mt-6 sm:mt-8 md:mt-3 text-center text-xs sm:text-sm text-neutral-400 font-secondary font-medium">
         Step {item.id + 1}
       </p>
     </div>
@@ -144,17 +146,24 @@ export default function Guide() {
 
   return (
     <CursorContext.Provider value={cursor}>
-      <section className="max-w-7xl mx-auto relative border-r-6 border-l-6 pb-32 border-neutral-300/20">
+      <section className="max-w-7xl mx-auto relative border-x-[6px] border-neutral-300/20 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6">
         <div className="flex flex-col items-center">
-          <div className="text-5xl font-medium tracking-tighter text-center">
-            <h1>Your comprehensive gateway</h1>
-            <h1>to Bitcoin dapps and tools</h1>
+          {/* Heading */}
+          <div className="text-3xl sm:text-4xl md:text-5xl font-semibold sm:font-medium tracking-tighter text-center leading-tight">
+            <h1>Discover our flow</h1>
+            <h1>to scan with ABaCoCobar</h1>
           </div>
-          <div className="mt-32 grid grid-cols-3 gap-y-24 w-full">
+
+          {/* Grid with better tablet scaling */}
+          <div className="
+            mt-16 sm:mt-20 md:mt-24
+            grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3
+            gap-y-14 sm:gap-y-16 md:gap-y-20
+            gap-x-6 sm:gap-x-8 md:gap-x-10
+            w-full place-items-center
+          ">
             {items.map((item, i) => (
-              <div key={i} className="flex items-center justify-center">
-                <TiltCard item={item} />
-              </div>
+              <TiltCard key={i} item={item} />
             ))}
           </div>
         </div>

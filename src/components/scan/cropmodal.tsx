@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import Cropper, { Area } from 'react-easy-crop';
-import { ScissorsIcon, XCircleIcon } from '@phosphor-icons/react';
+import Btn from '../reusable/btn';
 
 type Props = {
   file: File | null;
@@ -106,35 +106,9 @@ export default function CropModal({ file, open, onClose, onCropped }: Props) {
             onChange={(e) => setZoom(Number(e.target.value))}
             className="w-1/3 cursor-pointer"
           />
-          <div className="flex gap-2 items-center">
-            <button onClick={onClose} className={`bg-secondary text-primary flex items-center gap-x-2 rounded-full py-3 px-6 text-sm tracking-tighter overflow-hidden cursor-pointer group hover:scale-105 transition-all duration-500`}>
-              <div className='relative overflow-hidden'>
-                <p className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'>Cancel</p>
-                <p className='opacity-0'>Cancel</p>
-                <p className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'>Cancel</p>
-              </div>
-              <div>
-                <div className='relative overflow-hidden -rotate-45'>
-                  <XCircleIcon className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'/>
-                  <XCircleIcon className='opacity-0'/>
-                  <XCircleIcon className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'/>
-                </div>
-              </div>
-            </button>
-            <button onClick={createCroppedImage} className={`bg-primary text-secondary flex items-center gap-x-2 rounded-full py-3 px-6 text-sm tracking-tighter overflow-hidden cursor-pointer group hover:scale-105 transition-all duration-500`}>
-              <div className='relative overflow-hidden'>
-                <p className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'>Use Crop</p>
-                <p className='opacity-0'>Use Crop</p>
-                <p className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'>Use Crop</p>
-              </div>
-              <div>
-                <div className='relative overflow-hidden -rotate-45'>
-                  <ScissorsIcon className='absolute top-1/2 opacity-100 -translate-y-1/2 group-hover:-top-2 group-hover:opacity-0 duration-300 transition-all'/>
-                  <ScissorsIcon className='opacity-0'/>
-                  <ScissorsIcon className='absolute top-1/2 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300'/>
-                </div>
-              </div>
-            </button>
+          <div className="flex gap-3 items-center">
+            <Btn value={'Close'} variant={true} onClick={onClose}/>
+            <Btn value={'Crop'} onClick={createCroppedImage}/>
           </div>
         </div>
       </div>

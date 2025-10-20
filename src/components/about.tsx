@@ -6,28 +6,29 @@ import { aboutData, aboutPlusData } from '@/data/data'
 import Image from 'next/image'
 import cloudBg from "../../public/assets/cloud.png"
 import { motion } from 'framer-motion'
+import { url } from 'inspector'
 
 export default function About() {
   return (
-    <main className='w-full px-2'>
+    <main className='w-full sm:px-2'>
       <motion.section className='bg-foreground text-white w-full rounded-3xl'>
-        <div className='border-r-6 border-l-6 border-neutral-300/5 max-w-7xl mx-auto py-32 px-6'>
-          <div className='flex items-center justify-between mb-24'>
-            <div className='text-5xl font-medium tracking-tighter'>
+        <div className='border-r-6 border-l-6 border-neutral-300/5 max-w-7xl mx-auto py-16 sm:py-24 lg:py-32 px-6'>
+          <div className='lg:flex lg:items-center lg:justify-between mb-12 lg:mb-24'>
+            <div className='text-2xl text-center lg:text-left sm:text-5xl font-medium tracking-tighter'>
               <h1>Your ultimate Bacteria Scanner</h1>
               <h1>packed with features to</h1>
               <h1>simplify scanning process</h1>
             </div>
-            <div className='w-1/3'>
-              <p className='mb-6 text-[18px] text-neutral-400'>Say goodbye to manual counting. Our platform detects and counts bacterial colonies instantly — making research faster, and more efficient than ever</p>
-              <div>
+            <div className='w-full text-center mt-6 lg:mt-0 lg:text-left lg:w-1/3'>
+              <p className='mb-6 text-normal sm:text-[18px] text-neutral-400'>Say goodbye to manual counting. Our platform detects and counts bacterial colonies instantly — making research faster, and more efficient than ever</p>
+              <div className='flex items-center justify-center lg:block'>
                 <Btn value={'Contact us'} variant={true}/>
               </div>
             </div>
           </div>
           <div className='border w-full border-6 border-neutral-300/5 rounded-[53px]'>
             <div className='border w-full rounded-[50px] p-[5px] border-neutral-800'>
-              <div className='w-full grid grid-cols-2 gap-2'>
+              <div className='w-full grid grid-cols-1 sm:grid-cols-2 gap-2'>
                 {aboutData.map((item, i) => {
                   return (
                     <div key={i} className='border rounded-[48px] border-neutral-800 overflow-hidden'>
@@ -43,8 +44,8 @@ export default function About() {
                       </div>
                       <div className='font-medium tracking-tighter p-9'>
                         <item.icon size={30} weight='regular'/>
-                        <h1 className='mt-4 mb-3 text-2xl'>{item.title}</h1>
-                        <p className='text-[18px] text-neutral-400 w-[70%]'>{item.desc}</p>
+                        <h1 className='mt-4 mb-3 text-xl sm:text-2xl'>{item.title}</h1>
+                        <p className='text-normal sm:text-[18px] text-neutral-400 w-full lg:w-[70%]'>{item.desc}</p>
                       </div>
                     </div>
                   )
@@ -52,14 +53,14 @@ export default function About() {
               </div>
             </div>
           </div>
-          <div className='mt-48'>
-            <div className='text-center text-5xl font-medium relative tracking-tighter'>
+          <div className='mt-24 lg:mt-48'>
+            <div className='text-center text-3xl sm:text-5xl font-medium relative tracking-tighter'>
               <div className='w-40 h-20 rounded-full bg-gradient-to-b from-[#7cbee0] via-[#fed849] to-[#f24f3f] absolute -bottom-8 left-1/2 -translate-x-1/2 z-0 blur-3xl'/>
-              <h1 className='relative'>Explore, create, and trade</h1>
-              <h1 className='relative'>Seemlessly <span className='text-neutral-400'>in the bitcoin</span></h1>
-              <h1 className='text-neutral-400 relative'>ecosystem.</h1>
+              <h1 className='relative'>Explore, upload, and scan</h1>
+              <h1 className='relative'>Seemlessly <span className='text-neutral-400'>in the ABaCoCoBar</span></h1>
+              <h1 className='text-neutral-400 relative'>ecosystem</h1>
             </div>
-            <div className='mt-24 grid grid-cols-3'>
+            <div className='mt-12 lg:mt-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
               {aboutPlusData.map((item, i) => {
                 const rotate = [
                   "rotate-2 z-0",
@@ -71,11 +72,13 @@ export default function About() {
                     <div className='flex items-center'>
                       {item.image.map((items, i) => {
                         return (
-                          <div key={i} className={`${rotate[items.id]} w-20 h-20 bg-neutral-900 border border-neutral-800 rounded-3xl`}/>
+                          <div key={i} className={`${rotate[items.id]} w-20 h-20 bg-neutral-900 border border-neutral-800 rounded-3xl overflow-hidden bg-cover bg-center`} 
+                          style={{ backgroundImage: `url(${items.url})` }}
+                          />
                         )
                       })}
                     </div>
-                    <h1 className='text-xl w-[70%] font-medium mt-12'>{item.desc}</h1>
+                    <h1 className='text-xl lg:w-[70%] font-medium mt-12'>{item.desc}</h1>
                   </div>
                 )
               })}

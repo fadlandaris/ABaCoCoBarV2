@@ -1,4 +1,4 @@
-import { ApertureIcon, HandHeartIcon, FlameIcon, FilePdfIcon, ThumbsUpIcon, RocketLaunchIcon, InstagramLogoIcon, FacebookLogoIcon, XLogoIcon, UsersIcon, ScanIcon, BugIcon, ImageIcon, } from "@phosphor-icons/react"
+import { ApertureIcon, HandHeartIcon, FlameIcon, FilePdfIcon, ThumbsUpIcon, RocketLaunchIcon, InstagramLogoIcon, FacebookLogoIcon, XLogoIcon, UsersIcon, ScanIcon, BugIcon, ImageIcon, PanoramaIcon } from "@phosphor-icons/react"
 import rocketImg from '../../public/assets/rocket.png'
 import heartImg from '../../public/assets/heart.png'
 import scannerImg from '../../public/assets/scanner.png'
@@ -109,28 +109,28 @@ export const aboutData = [
 export const aboutPlusData = [
   {
     id: 0,
-    desc: 'Mint and Secure SRC - 20 Tokens',
+    desc: 'Scan and download process below - 20 seconds',
     image: [
-      {id: 0, url: ''},
-      {id: 1, url: ''},
-      {id: 2, url: ''},
+      {id: 0, url: 'https://images.unsplash.com/photo-1631824681077-ffb294002a88?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzh8fGJhY3RlcmlhJTIwaW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600'},
+      {id: 1, url: 'https://plus.unsplash.com/premium_photo-1669395056692-59303574f242?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&q=60&w=600'},
+      {id: 2, url: 'https://plus.unsplash.com/premium_photo-1674850274326-230eb46a0b1a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDExfHx8ZW58MHx8fHx8&auto=format&fit=crop&q=60&w=600'},
     ]
   },
   {
     id: 1,
-    desc: 'Trade Collect, and Inscribe Ordinals',
+    desc: 'Uplod, scan, and download the results',
     image: [
-      {id: 0, url: ''},
-      {id: 1, url: ''},
+      {id: 0, url: 'https://images.unsplash.com/photo-1583423230902-b653abc541eb?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&q=60&w=600'},
+      {id: 1, url: 'https://images.unsplash.com/photo-1706201320711-3d85bf15bac4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1081'},
     ]
   },
   {
     id: 2,
-    desc: 'Purchase STX 12 Tokens to power L2 apps on Stacks',
+    desc: 'Scan bacteral image to power your process',
     image: [
-      {id: 0, url: ''},
-      {id: 1, url: ''},
-      {id: 2, url: ''},
+      {id: 0, url: 'https://plus.unsplash.com/premium_photo-1673245588371-56698e2c5117?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFjdGVyaWF8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600'},
+      {id: 1, url: 'https://images.unsplash.com/photo-1631824683860-9a7aa1fe0713?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFjdGVyaWF8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600'},
+      {id: 2, url: 'https://images.unsplash.com/photo-1579781354171-45f67f0d8f18?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmFjdGVyaWF8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600'},
     ]
   },
 ]
@@ -228,5 +228,20 @@ export const socmedData = [
     id: 2,
     icon: InstagramLogoIcon,
     link: '',
+  },
+]
+
+export const imageScan = [
+  {
+    id: 0,
+    icon: PanoramaIcon
+  },
+  {
+    id: 1,
+    icon: PanoramaIcon
+  },
+  {
+    id: 2,
+    icon: PanoramaIcon
   },
 ]

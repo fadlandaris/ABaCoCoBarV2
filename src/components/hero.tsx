@@ -16,9 +16,9 @@ interface HeroItem {
 }
 
 function FloatingCard({
-  item,
-  i,
-  scrollYProgress,
+item,
+i,
+scrollYProgress,
 }: {
   item: HeroItem;
   i: number;
@@ -98,14 +98,14 @@ export default function HeroSection() {
       ref={ref}
       className="border-r-6 border-l-6 border-neutral-300/20 max-w-7xl mx-auto text-foreground relative overflow-hidden"
     >
-      <div className="w-full h-[25vh] relative">
+      <div className="w-full h-[20vh] sm:h-[25vh] relative">
         <Image src={heroBG} className="inset-0 absolute" fill alt="" />
       </div>
 
       {/* Bagian teks */}
       <motion.div
         style={{ y, scale, opacity }}
-        className="text-7xl capitalize text-center font-medium tracking-tighter mb-10 z-0"
+        className="text-4xl sm:text-7xl font-semibold capitalize text-center sm:font-medium tracking-tighter mb-10 z-0"
       >
         <h1>Automated Bacterial</h1>
         <h1>Colony Counter</h1>
@@ -113,10 +113,10 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Phone card */}
-      <div className="w-full h-[695px] relative">
-        <div className="rounded-full bg-background absolute top-8 left-1/2 -translate-x-1/2 z-20 p-6 blur-2xl">
+      <div className="w-full h-[565px] sm:h-[695px] relative">
+        <div className="rounded-full bg-background absolute top-8 left-1/2 -translate-x-1/2 z-20 p-6 blur-2xl opacity-0 sm:opacity-100">
           <motion.div
-            className="bg-[#ff9a82] rounded-full w-[370px] h-[400px]"
+            className="bg-[#ff9a82] rounded-full sm:w-[370px] sm:h-[400px]"
             style={{ height, width }}
           />
         </div>
@@ -124,8 +124,7 @@ export default function HeroSection() {
         <Image
           src={phoneCard}
           alt="phone"
-          width={370}
-          className="absolute left-1/2 -translate-x-1/2 border z-20"
+          className="absolute left-1/2 -translate-x-1/2 border z-20 w-[300px] sm:w-[370px]"
         />
 
         {heroData.map((item, i) => (
@@ -138,10 +137,10 @@ export default function HeroSection() {
         ))}
       </div>
 
-      <div className="w-full relative bg-background pt-12 pb-24">
+      <div className="w-full relative bg-background pt-12 pb-12 sm:pb-24">
         <div className="text-center text-neutral-500 text-[18px]">
-          <p>From transactions to dapps — explore every</p>
-          <p>corner of the Bitcoin universe with ease.</p>
+          <p>From upload to scanning — explore every</p>
+          <p>corner of the bacteria universe with ease</p>
         </div>
         <div className="flex items-center justify-center mt-3">
           <Btn value={"Scan now"} />

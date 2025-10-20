@@ -17,7 +17,7 @@ const courierPrime = Courier_Prime({
 });
 
 export const metadata = {
-  title: "ABaCoCoBar",
+  title: "ABaCoCoBar • Bacteria Scanner",
   description: "Next.js + Tailwind + Figtree",
 }
 
