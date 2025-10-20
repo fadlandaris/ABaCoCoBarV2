@@ -8,7 +8,7 @@ import heroBG from "../../public/assets/herobg.png";
 import Btn from "./reusable/btn";
 
 interface HeroItem {
-  link: any;
+  link: string;
   id: number;
   name: string;
   status: string;
