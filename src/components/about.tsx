@@ -6,7 +6,6 @@ import { aboutData, aboutPlusData } from '@/data/data'
 import Image from 'next/image'
 import cloudBg from "../../public/assets/cloud.png"
 import { motion } from 'framer-motion'
-import { url } from 'inspector'
 
 export default function About() {
   return (

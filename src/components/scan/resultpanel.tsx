@@ -4,7 +4,6 @@ import { jsPDF } from 'jspdf';
 import { ScanResponse } from '@/lib/types';
 import { downloadDataUrl } from '@/lib/dataUrl';
 import Image from "next/image";
-import { XCircleIcon } from '@phosphor-icons/react';
 import Btn from '../reusable/btn';
 
 type Props = {

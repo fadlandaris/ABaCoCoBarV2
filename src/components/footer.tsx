@@ -18,7 +18,7 @@ export default function Footer() {
           <div className='w-140 h-10 rounded-full bg-gradient-to-b from-[#7cbee0] via-[#fed849] to-[#f24f3f] absolute -top-12 left-1/2 -translate-x-1/2 z-0 blur-2xl -rotate-45'/>
           <div className=''>
             <div className='text-3xl sm:text-5xl font-medium tracking-tighter text-center px-12 sm:px-0'>
-              <h1 className='relative'>Let's get in touch</h1>
+              <h1 className='relative'>Let&apos;s get in touch</h1>
               <h1 className='relative'>with ABaCoCoBAR</h1>
             </div>
             <div className='flex items-center justify-center mt-12 relative gap-x-6'>

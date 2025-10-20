@@ -12,7 +12,7 @@ interface BtnProps {
   processing?: boolean
 }
 
-export default function Btn({ value, variant, onClick, disabled, processing }: BtnProps) {
+export default function Btn({ value, variant, onClick, disabled, }: BtnProps) {
   const router = useRouter()
 
   const handleClick = () => {
