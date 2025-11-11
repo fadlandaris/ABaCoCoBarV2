@@ -3,6 +3,8 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import {  ToastContainer } from "react-toastify";
 import Navbar from "@/components/reusable/navbar";
+import SmoothScroll from "./animations/SmoothScroll";
+import Logo from "@/components/reusable/logo";
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -27,20 +29,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
       <html lang="en">
         <body className={`${figtree.variable} ${courierPrime.variable} antialiased font-primary font-semibold tracking-tighter`}>
-          <Navbar/>
-          <ToastContainer
-            position="top-right"
-            autoClose={4000}
-            hideProgressBar={false}
-            newestOnTop
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="colored" 
-          />
-          {children}
+          <SmoothScroll>
+            <Logo/>
+            <Navbar/>
+              <ToastContainer
+                position="top-right"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored" 
+              />
+              {children}
+          </SmoothScroll>
         </body>
       </html>
     </ClerkProvider>
